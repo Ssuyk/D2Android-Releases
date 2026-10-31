@@ -410,6 +410,8 @@ public final class D2Runtime {
         env.put("MESA_VK_WSI_PRESENT_MODE", "mailbox");
         env.put("MESA_VK_WSI_NATIVE_MEM_IMPORTED", "1");
         env.put("TU_DEBUG", "noconform");
+        // fixes flickering on Adreno 740 (Snapdragon 8 Gen 2); read only by Turnip, so the Vortek path ignores it
+        env.put("FD_DEV_FEATURES", "enable_tp_ubwc_flag_hint=1");
         env.put("vblank_mode", "0");
 
         env.put("DXVK_LOG_LEVEL", "none");
