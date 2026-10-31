@@ -201,6 +201,8 @@
     <string name="helper_aimRange_info">Jusqu\'où l\'aide à la visée cherche un monstre pour les sorts, arcs et armes de jet.</string>
     <string name="helper_aimCone_label">Seulement les monstres devant le personnage</string>
     <string name="helper_aimCone_info">Avec le joystick, l\'aide à la visée ne prend que les monstres dans cet angle devant le personnage, sans lui le plus proche à portée.</string>
+    <string name="helper_takeReach_label">Portée pour objets et éléments</string>
+    <string name="helper_takeReach_info">Distance à laquelle le bouton d\'action cherche les objets, coffres, cadavres et autres éléments à prendre ou utiliser, en pourcentage de la hauteur de l\'écran.</string>
     <string name="helper_aimBlind_label">Angle mort derrière le personnage</string>
     <string name="helper_aimBlind_info">Sans le joystick, l\'aide à la visée ignore les monstres dans cet angle derrière le personnage : tourne-toi vers eux toi-même. Désactivé : tout autour comme avant.</string>
     <string name="helper_highlight_label">Mettre la cible en évidence comme la souris</string>

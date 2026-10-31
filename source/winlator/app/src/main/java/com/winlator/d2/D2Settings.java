@@ -311,7 +311,7 @@ public final class D2Settings {
 
 
     static final String KEY_AIM_ASSIST = "aimAssist", KEY_AIM_RANGE = "aimRange", KEY_AIM_RANGE_MELEE = "aimRangeMelee", KEY_AIM_CONE = "aimCone",
-        KEY_AIM_BLIND = "aimBlind",
+        KEY_AIM_BLIND = "aimBlind", KEY_TAKE_REACH = "takeReach",
         KEY_HIGHLIGHT = "highlight", KEY_POTIONS = "potions", KEY_ITEMS_NEED_LABELS = "itemsNeedLabels", KEY_RING_SORT = "ringSort",
         KEY_DIRECT_WALK = "directWalk", KEY_TAP_MOVES = "tapMoves", KEY_HUD = "hud", KEY_MENU_OPEN = "menuOpen", KEY_AUTO_PAUSE = "autoPause",
         KEY_LABELS = "itemLabels", KEY_ALWAYS_RUN = "alwaysRun", KEY_ORB_NUMBERS = "orbNumbers",
@@ -350,6 +350,9 @@ public final class D2Settings {
 
     public static final int AIM_BLIND_MIN = 0, AIM_BLIND_MAX = 180, AIM_BLIND_DEFAULT = 60;
 
+    // reach of A for items, chests and other things, in % of the game height; 55 was the fixed value before
+    public static final int TAKE_REACH_MIN = 10, TAKE_REACH_MAX = 70, TAKE_REACH_DEFAULT = 55;
+
     public static final int STAMINA_NORMAL = 0, STAMINA_POTION = 1, STAMINA_UNLIMITED = 2;
 
     public static final int AUTO_POTION_MAX = 90;
@@ -378,6 +381,11 @@ public final class D2Settings {
 
     public static int aimCone(Context context) {
         return clamp(prefs(context).getInt(KEY_AIM_CONE, AIM_CONE_DEFAULT), AIM_CONE_MIN, AIM_CONE_MAX);
+    }
+
+
+    public static int takeReach(Context context) {
+        return clamp(prefs(context).getInt(KEY_TAKE_REACH, TAKE_REACH_DEFAULT), TAKE_REACH_MIN, TAKE_REACH_MAX);
     }
 
 

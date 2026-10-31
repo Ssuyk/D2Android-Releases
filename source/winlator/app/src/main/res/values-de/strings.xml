@@ -197,6 +197,8 @@
     <string name="helper_aimRange_info">So weit sucht die Zielhilfe ein Monster für Zauber, Bögen und Wurfwaffen.</string>
     <string name="helper_aimCone_label">Nur Monster vor dem Charakter</string>
     <string name="helper_aimCone_info">Mit dem Joystick nimmt die Zielhilfe nur Monster in diesem Winkel vor dem Charakter, ohne Joystick das nächste in Reichweite.</string>
+    <string name="helper_takeReach_label">Reichweite für Gegenstände und Objekte</string>
+    <string name="helper_takeReach_info">Wie weit die Aktionstaste nach Gegenständen, Truhen, Leichen und anderem zum Nehmen oder Benutzen sucht, in Prozent der Bildschirmhöhe.</string>
     <string name="helper_aimBlind_label">Toter Winkel hinter dem Charakter</string>
     <string name="helper_aimBlind_info">Ohne Joystick lässt die Zielhilfe Monster in diesem Winkel hinter dem Charakter aus: dreh dich selbst zu ihnen. Aus: rundum wie bisher.</string>
     <string name="helper_highlight_label">Ziel hervorheben wie mit der Maus</string>

@@ -256,7 +256,8 @@ public final class D2Gamepad {
     }
 
 
-    public static final float TAKE_REACH_OF_HEIGHT = 0.55f;
+    // share of the game height within which A takes or uses things; set from D2Settings.takeReach
+    public static volatile float takeReachOfHeight = D2Settings.TAKE_REACH_DEFAULT / 100f;
 
 
 
@@ -265,7 +266,7 @@ public final class D2Gamepad {
 
 
     public static boolean aTakes(double isoDistance, int gameHeight) {
-        return isoDistance <= gameHeight * TAKE_REACH_OF_HEIGHT;
+        return isoDistance <= gameHeight * takeReachOfHeight;
     }
 
 

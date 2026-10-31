@@ -201,6 +201,8 @@
     <string name="helper_aimRange_info">Hasta qué distancia busca la ayuda de puntería un monstruo para hechizos, arcos y armas arrojadizas.</string>
     <string name="helper_aimCone_label">Solo monstruos delante del personaje</string>
     <string name="helper_aimCone_info">Con el joystick, la ayuda de puntería solo elige monstruos dentro de este ángulo delante del personaje; sin él, el más cercano al alcance.</string>
+    <string name="helper_takeReach_label">Alcance para objetos y elementos</string>
+    <string name="helper_takeReach_info">Hasta dónde busca el botón de acción objetos, cofres, cadáveres y otras cosas para coger o usar, en porcentaje de la altura de la pantalla.</string>
     <string name="helper_aimBlind_label">Ángulo muerto detrás del personaje</string>
     <string name="helper_aimBlind_info">Sin el joystick, la ayuda de puntería ignora los monstruos dentro de este ángulo detrás del personaje: gírate tú hacia ellos. Desactivado: todo alrededor, como antes.</string>
     <string name="helper_highlight_label">Resaltar el objetivo como lo hace el ratón</string>

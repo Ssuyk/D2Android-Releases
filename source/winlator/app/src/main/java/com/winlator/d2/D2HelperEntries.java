@@ -58,7 +58,7 @@ public final class D2HelperEntries {
         group(TAB_DISPLAY, "Schaden", "damageStyle");
         group(TAB_DISPLAY, "Karte", "mapHack", "mapFightHide", "mapFightDelay");
         group(TAB_DISPLAY, "Sonst", "hidePointer", "joystickVisible");
-        group(TAB_CONTROL, "Zielhilfe", "aimAssist", "aimRangeMelee", "aimRange", "aimCone", "aimBlind", "highlight");
+        group(TAB_CONTROL, "Zielhilfe", "aimAssist", "aimRangeMelee", "aimRange", "aimCone", "aimBlind", "takeReach", "highlight");
         group(TAB_CONTROL, "Gehen und Laufen", "alwaysRun", "directWalk", "tapMoves");
         group(TAB_CONTROL, "Gegenstände", "itemsNeedLabels", "ringSort");
         group(TAB_CONTROL, "Menü oben rechts", "menuPinned");
@@ -240,6 +240,7 @@ public final class D2HelperEntries {
         l.add(new Entry(Kind.SLIDER, "aimRange", "helper_aimRange_label", s, TAB_CONTROL, false, null, "helper_aimRange_info"));
         l.add(new Entry(Kind.SLIDER, "aimCone", "helper_aimCone_label", s, TAB_CONTROL, false, null, "helper_aimCone_info"));
         l.add(new Entry(Kind.SLIDER, "aimBlind", "helper_aimBlind_label", s, TAB_CONTROL, false, null, "helper_aimBlind_info"));
+        l.add(new Entry(Kind.SLIDER, "takeReach", "helper_takeReach_label", s, TAB_CONTROL, false, null, "helper_takeReach_info"));
         l.add(new Entry(Kind.CHECK, "highlight", "helper_highlight_label", s, TAB_CONTROL, false, null, "helper_highlight_info"));
 
         s = "Tränke";
@@ -369,7 +370,7 @@ public final class D2HelperEntries {
     static {
         section(SET_CONTROL, "gehen", "alwaysRun", "directWalk", "tapMoves", "staminaMode");
         section(SET_CONTROL, "joystick", "joystickVisible", "hidePointer");
-        section(SET_CONTROL, "zielhilfe", "aimAssist", "aimRangeMelee", "aimRange", "aimCone", "aimBlind", "highlight");
+        section(SET_CONTROL, "zielhilfe", "aimAssist", "aimRangeMelee", "aimRange", "aimCone", "aimBlind", "takeReach", "highlight");
         section(SET_CONTROL, "schultertasten", "triggers");
         section(SET_CONTROL, "gamepad", "padEnabled", "padMap", "padDeadzone", "padCursorSpeed");
         section(SET_CONTROL, "menue", "menuPinned", "editButtons");

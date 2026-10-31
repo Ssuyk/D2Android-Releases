@@ -201,6 +201,8 @@
     <string name="helper_aimRange_info">Fin dove la mira assistita cerca un mostro per incantesimi, archi e armi da lancio.</string>
     <string name="helper_aimCone_label">Solo mostri davanti al personaggio</string>
     <string name="helper_aimCone_info">Con il joystick la mira assistita sceglie solo mostri entro questo angolo davanti al personaggio, senza joystick il più vicino a portata.</string>
+    <string name="helper_takeReach_label">Portata per oggetti ed elementi</string>
+    <string name="helper_takeReach_info">Fin dove il tasto azione cerca oggetti, forzieri, cadaveri e altro da prendere o usare, in percentuale dell\'altezza dello schermo.</string>
     <string name="helper_aimBlind_label">Angolo cieco dietro il personaggio</string>
     <string name="helper_aimBlind_info">Senza joystick la mira assistita salta i mostri entro questo angolo dietro il personaggio: girati tu verso di loro. Disattivato: tutto intorno come prima.</string>
     <string name="helper_highlight_label">Evidenzia il bersaglio come fa il mouse</string>

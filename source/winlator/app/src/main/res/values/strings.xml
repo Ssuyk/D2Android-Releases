@@ -200,6 +200,8 @@
     <string name="helper_aimRange_info">How far aim help looks for a monster for spells, bows and throwing weapons.</string>
     <string name="helper_aimCone_label">Only monsters in front of the character</string>
     <string name="helper_aimCone_info">With the joystick, aim help only picks monsters within this angle in front of the character, without it the nearest one in reach.</string>
+    <string name="helper_takeReach_label">Reach for items and objects</string>
+    <string name="helper_takeReach_info">How far the action button looks for items, chests, corpses and other things to take or use, in percent of the screen height.</string>
     <string name="helper_aimBlind_label">Blind spot behind the character</string>
     <string name="helper_aimBlind_info">Without the joystick, aim help skips monsters within this angle behind the character: turn towards them yourself. Off: all around as before.</string>
     <string name="helper_highlight_label">Highlight the target like the mouse does</string>

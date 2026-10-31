@@ -1249,6 +1249,9 @@ public final class D2HelpersPanel {
             case "aimBlind":
                 return slider(context, e.label, v -> v == 0 ? D2Text.get(context, com.winlator.R.string.helper_value_off) : v + "°",
                     D2Settings.AIM_BLIND_MIN, D2Settings.AIM_BLIND_MAX, 10, D2Settings.aimBlind(context), e.key, onChange, onAimChange);
+            case "takeReach":
+                return slider(context, e.label, v -> v + " %", D2Settings.TAKE_REACH_MIN, D2Settings.TAKE_REACH_MAX, 5,
+                    D2Settings.takeReach(context), e.key, onChange, null);
             case "autoLife":
                 return slider(context, e.label, percentOrOff, 0, D2Settings.AUTO_POTION_MAX, 5, D2Settings.autoLife(context), e.key,
                     onChange, null);
