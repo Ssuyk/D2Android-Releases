@@ -69,6 +69,7 @@ final class D2AimAssist {
 
 
     static boolean previewFor(String key) {
-        return "aimRangeMelee".equals(key) || "aimRange".equals(key) || "aimCone".equals(key) || "aimBlind".equals(key);
+        return "aimRangeMelee".equals(key) || "aimRange".equals(key) || "aimCone".equals(key) || "aimBlind".equals(key)
+            || "takeReach".equals(key);
     }
 }

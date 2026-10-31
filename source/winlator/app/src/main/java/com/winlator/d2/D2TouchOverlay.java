@@ -2842,6 +2842,18 @@ public class D2TouchOverlay extends View {
         float height = s != null ? s.gameHeight : 600;
         float ranged = height * aimRangePct / 100f, melee = height * Math.min(aimRangeMeleePct, aimRangePct) / 100f;
         String key = aimPreviewKey;
+        if ("takeReach".equals(key)) {
+            // only the reach of A for items and objects, in green to set it apart from the monster reach
+            Path take = reachPath(s, height * D2Gamepad.takeReachOfHeight);
+            fillPaint.setColor(Color.argb(35, 80, 220, 120));
+            canvas.drawPath(take, fillPaint);
+            float width = strokePaint.getStrokeWidth();
+            strokePaint.setStrokeWidth(2 * width);
+            strokePaint.setColor(Color.argb(220, 80, 220, 120));
+            canvas.drawPath(take, strokePaint);
+            strokePaint.setStrokeWidth(width);
+            return;
+        }
         boolean meleeStrong = "aimRangeMelee".equals(key) || (!"aimRange".equals(key) && meleeReach(attackSkillNow()));
         double base = Math.atan2(dirY, dirX), half = Math.toRadians(aimConeDeg);
         Path cone = conePath(s, base, half, Math.max(ranged, melee)), coneInner = conePath(s, base, half, Math.min(ranged, melee));
