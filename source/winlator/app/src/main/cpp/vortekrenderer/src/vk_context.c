@@ -142,8 +142,20 @@ void destroyVkContext(JNIEnv* env, VkContext* context) {
         context->threadPool = NULL;
 
         context->requestHandlerThread = 0;
+    }
+
+    // also reached when setupRingBuffers failed before the handler thread started
+    if (context->threadPool) {
+        ThreadPool_destroy(context->threadPool);
+        context->threadPool = NULL;
+    }
+    if (context->serverRing) {
         RingBuffer_free(context->serverRing);
+        context->serverRing = NULL;
+    }
+    if (context->clientRing) {
         RingBuffer_free(context->clientRing);
+        context->clientRing = NULL;
     }
 
     if (context->jmethods.obj) {
@@ -176,8 +188,12 @@ bool handleExtraDataRequest(VkContext* context, uint16_t requestId, int requestL
     void* data = NULL;
     if (requestLength > 0) {
         data = calloc(requestLength, 1);
+        if (!data) return false;
         int bytesRead = sock_read(context->clientFd, data, requestLength);
-        if (bytesRead != requestLength) return false;
+        if (bytesRead != requestLength) {
+            free(data);
+            return false;
+        }
     }
 
     ExtraDataRequest* extraDataRequest = calloc(1, sizeof(ExtraDataRequest));

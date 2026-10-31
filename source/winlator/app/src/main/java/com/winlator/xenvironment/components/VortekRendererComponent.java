@@ -132,11 +132,14 @@ public class VortekRendererComponent extends EnvironmentComponent implements Con
             else connector.killConnection(client);
         }
         else if (requestCode > Short.MAX_VALUE && (requestCode >> 16) == REQUEST_CODE_SEND_EXTRA_DATA) {
+            if (client.getTag() == null) throw new IOException("Extra data request before context creation.");
             int requestId = requestCode & 0xffff;
             long contextPtr = (long)client.getTag();
             boolean success = handleExtraDataRequest(contextPtr, requestId, requestLength);
             if (!success) throw new IOException("Failed to handle extra data request.");
         }
+        // the payload of an unknown request cannot be skipped reliably, so the stream would desync
+        else throw new IOException("Unknown Vortek request code " + requestCode + ".");
 
         return true;
     }

@@ -39,7 +39,7 @@ public final class ALSABufferSize {
 
         int frames = Math.round(((latencyMillis * sampleRate) / 1000.0f) / (float)burst) * burst;
         if (frames < burst) frames = burst;
-        if (frameBytes > 1 && frames % frameBytes != 0) frames += frameBytes - frames % frameBytes;
+        // frames * frameBytes is always whole frames, so no extra alignment is needed
         return frames;
     }
 }

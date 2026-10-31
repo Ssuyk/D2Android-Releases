@@ -206,16 +206,22 @@ final class D2Umzug {
         if (parent != null && !parent.isDirectory() && !parent.mkdirs()) throw new IOException("cannot create " + parent);
         File part = new File(zip.getPath() + ".part");
         byte[] buf = new byte[BUFFER];
-        try (java.util.zip.ZipOutputStream out = new java.util.zip.ZipOutputStream(new FileOutputStream(part))) {
-            for (File f : files) {
-                out.putNextEntry(new java.util.zip.ZipEntry(dir.toPath().relativize(f.toPath()).toString().replace(File.separatorChar, '/')));
-                try (InputStream in = new FileInputStream(f)) {
-                    for (int r; (r = in.read(buf)) > 0; ) out.write(buf, 0, r);
+        try {
+            try (java.util.zip.ZipOutputStream out = new java.util.zip.ZipOutputStream(new FileOutputStream(part))) {
+                for (File f : files) {
+                    out.putNextEntry(new java.util.zip.ZipEntry(dir.toPath().relativize(f.toPath()).toString().replace(File.separatorChar, '/')));
+                    try (InputStream in = new FileInputStream(f)) {
+                        for (int r; (r = in.read(buf)) > 0; ) out.write(buf, 0, r);
+                    }
+                    out.closeEntry();
                 }
-                out.closeEntry();
             }
+            if (!part.renameTo(zip)) throw new IOException("cannot rename " + part);
         }
-        if (!part.renameTo(zip)) throw new IOException("cannot rename " + part);
+        catch (IOException | RuntimeException e) {
+            part.delete();
+            throw e;
+        }
         return zip;
     }
 
@@ -287,10 +293,32 @@ final class D2Umzug {
         for (File h : held) {
             if (target.exists() || !ready(new File(base, SAVES))) continue;
             File saves = saveFolder(h);
-            if (saves != null) delete(saves);
+            if (saves != null && mergeSaves(saves, new File(base, SAVES))) delete(saves);
             if (!ready(h) && !new File(h, MARKER).createNewFile()) throw new IOException("cannot write the marker in " + h);
             if (!h.renameTo(target)) throw new IOException("cannot rename " + h + " to " + target);
         }
+    }
+
+
+    // copies the files of an adopted save folder that the app's saves lack; true when nothing in it would be lost
+    private static boolean mergeSaves(File from, File saves) throws IOException {
+        File[] list = from.listFiles();
+        if (list == null) return false;
+        boolean all = true;
+        for (File f : list) {
+            File c = new File(saves, f.getName());
+            if (f.isDirectory()) {
+                if (!c.isDirectory() && !c.mkdirs()) throw new IOException("cannot create " + c);
+                all &= mergeSaves(f, c);
+            }
+            else if (!c.exists()) {
+                File part = new File(saves, f.getName() + ".part");
+                copyFile(f, part, SAVES, 0, new long[]{0, 0}, (w, d, t) -> {});
+                if (!part.renameTo(c)) throw new IOException("cannot rename " + part);
+            }
+            else if (!c.isFile() || c.length() != f.length() || !Arrays.equals(sha256(f), sha256(c))) all = false;
+        }
+        return all;
     }
 
 

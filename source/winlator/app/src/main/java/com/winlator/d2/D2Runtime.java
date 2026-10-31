@@ -99,7 +99,7 @@ public final class D2Runtime {
             drive = "E:";
             rest = path.substring(game.length());
         }
-        else if (store != null && (path.equals(store) || path.startsWith(store + "/"))) {
+        else if ((path.equals(store) || path.startsWith(store + "/"))) {
 
             drive = "F:";
             rest = path.substring(store.length());
@@ -494,6 +494,7 @@ public final class D2Runtime {
         File root = rootDir(context);
         File marker = new File(prefixDir(context), DXVK_MALI_MARKER);
         if (!vortek && !marker.exists()) return;
+        if (vortek && marker.isFile() && "1.10.3".equals(FileUtils.readString(marker).trim())) return;
         File[] dlls = new File(root, vortek ? DXVK_MALI_DIR : DXVK_ADRENO_DIR).listFiles();
         if (dlls == null || dlls.length == 0) throw new IOException(D2Text.get(context, R.string.runtime_no_dxvk));
         File syswow64 = new File(prefixDir(context), "drive_c/windows/syswow64");
