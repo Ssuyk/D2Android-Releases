@@ -1678,5 +1678,5 @@
     <string name="game_in_app_from">Nell\'app (preso da %1$s)</string>
     <string name="settings_saves_save_as">Salva come</string>
     <string name="pad_identify_hint">Premi Y per identificare</string>
-    <string name="pad_identify_none">Nessuna pergamena o tomo d\'identificazione carico nell\'inventario</string>
+    <string name="pad_identify_none">Nessuna pergamena disponibile per l\'identificazione</string>
 </resources>

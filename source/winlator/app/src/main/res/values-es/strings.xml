@@ -1678,5 +1678,5 @@
     <string name="game_in_app_from">En la app (traído de %1$s)</string>
     <string name="settings_saves_save_as">Guardar como</string>
     <string name="pad_identify_hint">Pulsa Y para identificar</string>
-    <string name="pad_identify_none">No hay pergamino ni tomo de identificación con cargas en el inventario</string>
+    <string name="pad_identify_none">No hay pergaminos disponibles para identificar</string>
 </resources>
