@@ -100,7 +100,7 @@ public class D2SettingsActivity extends D2Activity {
             glyphs[i] = items[2 * i];
             words[i] = padWord(items[2 * i + 1]);
         }
-        padBar.show(D2PadHint.picture(look.formal10, glyphs, words));
+        padBar.show(D2PadHint.picture(look.formal10, glyphs, words, D2PadStyle.current(this)));
     }
 
     private String padWord(int word) {

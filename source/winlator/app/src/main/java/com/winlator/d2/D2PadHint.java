@@ -21,7 +21,7 @@ final class D2PadHint {
         LB = D2PadNav.GLYPH_LB, RB = D2PadNav.GLYPH_RB, START = D2PadNav.GLYPH_START, LEFT_RIGHT = D2PadNav.GLYPH_LEFT_RIGHT;
 
 
-    static Bitmap picture(D2GameFont font, int[] glyphs, String[] words) {
+    static Bitmap picture(D2GameFont font, int[] glyphs, String[] words, int style) {
         int h = font.height, r = h / 2 + 1, gap = h / 2, space = h;
         Bitmap[] texts = new Bitmap[words.length];
         int width = 0;
@@ -45,7 +45,14 @@ final class D2PadHint {
             c.drawRoundRect(stone, r, r, fill);
             c.drawRoundRect(stone, r, r, rim);
             float cx = x + w / 2f;
-            if (glyphs[i] == START) {
+            boolean face = glyphs[i] == A || glyphs[i] == B || glyphs[i] == X || glyphs[i] == Y;
+            if (style == D2PadStyle.PLAYSTATION && face) shape(c, glyphs[i], cx, cy, r);
+            else if (style == D2PadStyle.NINTENDO && glyphs[i] == START) {
+                float lw = r * 0.5f;
+                c.drawRect(cx - lw, cy - 0.5f, cx + lw, cy + 0.5f, mark);
+                c.drawRect(cx - 0.5f, cy - lw, cx + 0.5f, cy + lw, mark);
+            }
+            else if (glyphs[i] == START) {
                 float lw = r * 0.9f;
                 for (int k = -1; k <= 1; k++) c.drawRect(cx - lw / 2, cy + k * r * 0.4f - 0.5f, cx + lw / 2, cy + k * r * 0.4f + 0.5f, mark);
             }
@@ -63,7 +70,7 @@ final class D2PadHint {
                 c.drawPath(p, mark);
             }
             else {
-                Bitmap letter = bitmap(font.render(label(glyphs[i]), 0xF0E0A0));
+                Bitmap letter = bitmap(font.render(D2PadStyle.label(style, glyphs[i]), 0xF0E0A0));
                 c.drawBitmap(letter, cx - letter.getWidth() / 2f, cy - letter.getHeight() / 2f, null);
             }
             x += w + gap;
@@ -77,15 +84,34 @@ final class D2PadHint {
         return glyph == LB || glyph == RB || glyph == LEFT_RIGHT ? 3 * r : 2 * r;
     }
 
-    private static String label(int glyph) {
+    // PlayStation face buttons in their usual colours: cross blue, circle red, square pink, triangle green.
+    private static void shape(Canvas c, int glyph, float cx, float cy, int r) {
+        Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
+        p.setStyle(Paint.Style.STROKE);
+        p.setStrokeWidth(Math.max(1f, r * 0.18f));
+        float s = r * 0.5f;
         switch (glyph) {
-            case A: return "A";
-            case B: return "B";
-            case X: return "X";
-            case Y: return "Y";
-            case LB: return "LB";
-            case RB: return "RB";
-            default: return "";
+            case A:
+                p.setColor(Color.rgb(124, 178, 232));
+                c.drawLine(cx - s, cy - s, cx + s, cy + s, p);
+                c.drawLine(cx - s, cy + s, cx + s, cy - s, p);
+                break;
+            case B:
+                p.setColor(Color.rgb(255, 102, 102));
+                c.drawCircle(cx, cy, s, p);
+                break;
+            case X:
+                p.setColor(Color.rgb(255, 105, 248));
+                c.drawRect(cx - s * 0.85f, cy - s * 0.85f, cx + s * 0.85f, cy + s * 0.85f, p);
+                break;
+            default:
+                p.setColor(Color.rgb(64, 226, 160));
+                android.graphics.Path t = new android.graphics.Path();
+                t.moveTo(cx, cy - s);
+                t.lineTo(cx + s, cy + s * 0.75f);
+                t.lineTo(cx - s, cy + s * 0.75f);
+                t.close();
+                c.drawPath(t, p);
         }
     }
 

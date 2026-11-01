@@ -57,7 +57,7 @@ public final class D2HelperEntries {
         group(TAB_DISPLAY, "Gegenstände", "compareEquipped", "valueLine", "diffLines", "windowInfo");
         group(TAB_DISPLAY, "Schaden", "damageStyle");
         group(TAB_DISPLAY, "Karte", "mapHack", "mapFightHide", "mapFightDelay");
-        group(TAB_DISPLAY, "Sonst", "hidePointer", "joystickVisible");
+        group(TAB_DISPLAY, "Sonst", "hidePointer", "joystickVisible", "padStyle");
         group(TAB_CONTROL, "Zielhilfe", "aimAssist", "aimRangeMelee", "aimRange", "aimCone", "aimBlind", "takeReach", "highlight");
         group(TAB_CONTROL, "Gehen und Laufen", "alwaysRun", "directWalk", "tapMoves");
         group(TAB_CONTROL, "Gegenstände", "itemsNeedLabels", "ringSort");
@@ -226,6 +226,8 @@ public final class D2HelperEntries {
         l.add(new Entry(Kind.TRIGGERS, "triggers", "helper_triggers_label", s, TAB_CONTROL, false, "helper_triggers_lead", null,
             triggerOptions()));
         l.add(new Entry(Kind.CHECK, "hidePointer", "helper_hidePointer_label", s, TAB_DISPLAY, false, null, "helper_hidePointer_info"));
+        l.add(new Entry(Kind.CHOICE, "padStyle", "helper_padStyle_label", s, TAB_DISPLAY, false, null, "helper_padStyle_info",
+            "helper_padStyle_opt0", "helper_padStyle_opt1", "helper_padStyle_opt2", "helper_padStyle_opt3"));
 
 
         s = "Gamepad";
@@ -382,6 +384,7 @@ public final class D2HelperEntries {
         section(SET_DISPLAY, "hervorgehoben", "hiClock", "hiFps", "hiBattery", "hiPlayers", "hiLevel", "hiDps", "hiGold");
         section(SET_DISPLAY, "karte", "mapHack", "mapFightHide", "mapFightDelay");
         section(SET_DISPLAY, "schaden", "damageStyle");
+        section(SET_DISPLAY, "tasten", "padStyle");
         section(SET_DISPLAY, "app", "appLanguage", "shortcut");
         section(SET_LOOT, "namen", "itemLabels", "dropLabels", "labelsNearOnly");
         section(SET_LOOT, "lootfilter", "lootFilter", "lootHide");
@@ -431,6 +434,7 @@ public final class D2HelperEntries {
         for (String k : new String[]{"modsList", "modsImport"}) SCOPE.put(k, BEFORE_START);
         keywords("aimBlind", "toter winkel blind spot hinter ruecken behind auto aim");
         keywords("damageStyle", "schaden zahlen schadenszahlen damage numbers dmg");
+        keywords("padStyle", "controller pad buttons tasten xbox playstation ps4 ps5 dualsense nintendo switch manette boutons mando botones pulsanti");
         keywords("mapHack", "map karte aufdecken minimap reveal automap");
         keywords("lootFilter", "loot filter lootfilter beute ausblenden hide");
         keywords("lootHide", "loot filter lootfilter eigene own");

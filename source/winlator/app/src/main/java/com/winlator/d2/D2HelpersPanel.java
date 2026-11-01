@@ -922,6 +922,7 @@ public final class D2HelpersPanel {
             case "ringSort": return new int[]{D2Settings.RING_SORT_RANK, D2Settings.RING_SORT_NEAR};
             case "lootFilter": return new int[]{D2LabelFilter.LOOT_OFF, D2LabelFilter.LOOT_LOOSE, D2LabelFilter.LOOT_STRICT, D2LabelFilter.LOOT_OWN};
             case "damageStyle": return new int[]{D2DamageStyle.OFF, D2DamageStyle.SIMPLE, D2DamageStyle.ELEMENT};
+            case "padStyle": return new int[]{D2PadStyle.AUTO, D2PadStyle.XBOX, D2PadStyle.PLAYSTATION, D2PadStyle.NINTENDO};
             case "gridSlot1": case "gridSlot2": case "gridSlot3": case "gridSlot4":
                 return new int[]{D2InfoGrid.EMPTY, D2InfoGrid.FPS, D2InfoGrid.BATTERY, D2InfoGrid.PLAYERS, D2InfoGrid.CLOCK, D2InfoGrid.LEVEL,
                     D2InfoGrid.DPS, D2InfoGrid.GOLD};
@@ -940,6 +941,7 @@ public final class D2HelpersPanel {
             case "ringSort": return D2Settings.ringSort(c);
             case "lootFilter": return D2LabelFilter.preset(c.getSharedPreferences(D2Settings.PREFS, Context.MODE_PRIVATE), lootScope);
             case "damageStyle": return D2Settings.damageStyle(c);
+            case "padStyle": return D2PadStyle.chosen(c);
             case "gridSlot1": case "gridSlot2": case "gridSlot3": case "gridSlot4": {
                 int place = key.charAt(key.length() - 1) - '1';
                 return D2InfoGrid.slot(D2Settings.gridSlot(c, place), place);
@@ -968,6 +970,7 @@ public final class D2HelpersPanel {
             case "boxSlot1": return OPTION_ID + 100;
             case "boxSlot2": return OPTION_ID + 110;
             case "boxSlot3": return OPTION_ID + 120;
+            case "padStyle": return OPTION_ID + 130;
             default: throw new IllegalArgumentException("no choice " + key);
         }
     }

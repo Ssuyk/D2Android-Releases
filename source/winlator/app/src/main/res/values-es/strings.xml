@@ -1677,6 +1677,14 @@
     <string name="game_in_app">En la app</string>
     <string name="game_in_app_from">En la app (traído de %1$s)</string>
     <string name="settings_saves_save_as">Guardar como</string>
-    <string name="pad_identify_hint">Pulsa Y para identificar</string>
+    <string name="pad_identify_hint">Pulsa %1$s para identificar</string>
+    <string name="pad_name_triangle">Triángulo</string>
+    <string name="settings_section_tasten">Botones del mando</string>
+    <string name="helper_padStyle_label">Estilo de botones en las ayudas</string>
+    <string name="helper_padStyle_info">Qué nombres y símbolos de botones muestran las ayudas. Automático los elige según el mando conectado.</string>
+    <string name="helper_padStyle_opt0">Automático (según el mando)</string>
+    <string name="helper_padStyle_opt1">Xbox</string>
+    <string name="helper_padStyle_opt2">PlayStation</string>
+    <string name="helper_padStyle_opt3">Nintendo</string>
     <string name="pad_identify_none">No hay pergaminos disponibles para identificar</string>
 </resources>

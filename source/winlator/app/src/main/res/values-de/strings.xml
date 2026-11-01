@@ -1671,6 +1671,14 @@
     <string name="game_in_app">In der App</string>
     <string name="game_in_app_from">In der App (übernommen aus %1$s)</string>
     <string name="settings_saves_save_as">Spielstände speichern</string>
-    <string name="pad_identify_hint">Y drücken zum Identifizieren</string>
+    <string name="pad_identify_hint">%1$s drücken zum Identifizieren</string>
+    <string name="pad_name_triangle">Dreieck</string>
+    <string name="settings_section_tasten">Controller-Tasten</string>
+    <string name="helper_padStyle_label">Tastenstil in Hinweisen</string>
+    <string name="helper_padStyle_info">Welche Tastennamen und Symbole die Hinweise zeigen. Automatisch wählt sie nach dem verbundenen Controller.</string>
+    <string name="helper_padStyle_opt0">Automatisch (nach Controller)</string>
+    <string name="helper_padStyle_opt1">Xbox</string>
+    <string name="helper_padStyle_opt2">PlayStation</string>
+    <string name="helper_padStyle_opt3">Nintendo</string>
     <string name="pad_identify_none">Keine Rollen zum Identifizieren vorhanden</string>
 </resources>

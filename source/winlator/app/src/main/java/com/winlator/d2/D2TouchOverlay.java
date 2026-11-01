@@ -5638,7 +5638,7 @@ public class D2TouchOverlay extends View {
         }
         if (padActive && s.isPanelOpen() && hudNow - idHintSentAt > 1000) {
             idHintSentAt = hudNow;
-            modLink.idHint(text(R.string.pad_identify_hint) + "\t" + text(R.string.pad_identify_none));
+            modLink.idHint(text(R.string.pad_identify_hint, D2PadStyle.topName(getContext(), D2PadStyle.current(getContext()))) + "\t" + text(R.string.pad_identify_none));
         }
 
         D2Materials.Snapshot stash = modLink.materials();

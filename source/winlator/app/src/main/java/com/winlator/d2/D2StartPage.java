@@ -499,7 +499,7 @@ final class D2StartPage extends FrameLayout {
                 : g == D2StartPad.GLYPH_B ? D2PadHint.B : D2PadHint.START;
             words[i] = padWord(items[2 * i + 1]);
         }
-        return D2PadHint.picture(art.formal10, glyphs, words);
+        return D2PadHint.picture(art.formal10, glyphs, words, D2PadStyle.current(getContext()));
     }
 
     private String padWord(int text) {

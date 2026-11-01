@@ -1677,6 +1677,14 @@
     <string name="game_in_app">Nell\'app</string>
     <string name="game_in_app_from">Nell\'app (preso da %1$s)</string>
     <string name="settings_saves_save_as">Salva come</string>
-    <string name="pad_identify_hint">Premi Y per identificare</string>
+    <string name="pad_identify_hint">Premi %1$s per identificare</string>
+    <string name="pad_name_triangle">Triangolo</string>
+    <string name="settings_section_tasten">Pulsanti del controller</string>
+    <string name="helper_padStyle_label">Stile dei pulsanti nei suggerimenti</string>
+    <string name="helper_padStyle_info">Quali nomi e simboli dei pulsanti mostrano i suggerimenti. Automatico li sceglie in base al controller collegato.</string>
+    <string name="helper_padStyle_opt0">Automatico (dal controller)</string>
+    <string name="helper_padStyle_opt1">Xbox</string>
+    <string name="helper_padStyle_opt2">PlayStation</string>
+    <string name="helper_padStyle_opt3">Nintendo</string>
     <string name="pad_identify_none">Nessuna pergamena disponibile per l\'identificazione</string>
 </resources>
