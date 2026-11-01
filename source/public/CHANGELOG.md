@@ -3,6 +3,15 @@
 <!-- One section per public release, newest first: "## <version> (<YYYY-MM-DD>)", then bullet points.
      The top section is the version being released; its text becomes the release notes and the app's "What's new" page. -->
 
+## 1.5.1-ssuyk.1 (2026-11-01)
+
+- Gamepad in windows: the D-pad jumps the pointer from slot to slot, one stop per item whatever its size and one per empty cell. It covers the inventory, the equipment, the weapon swap tabs, the stash, the cube and the merchant, and moves from one window to the other. At the merchant it also reaches the tabs and the buttons such as repair. While an item hangs on the pointer it moves cell by cell. Turn it off with "D-pad moves between inventory slots" in the gamepad settings.
+- Action button: new setting "Reach for items and objects" sets how far items and objects can be taken. A circle shows the reach while the slider moves.
+- Snapdragon 8 Gen 2 (Adreno 740, e.g. Galaxy S23): the picture no longer flickers.
+- Saved games: when the saves are moved into the app, a save already there is no longer overwritten. If a file differs, the old folder is kept.
+- Mali, Xclipse and PowerVR graphics: fixes for rare crashes and memory leaks.
+- Sound: corrected an audio buffer size.
+
 ## 1.5.1 (2026-10-30)
 
 - New devices: phones and tablets with Mali, Samsung Xclipse or PowerVR DXT graphics (e.g. Pixel 10) are now supported and go straight into the game, with the same picture as on Snapdragon. Tested on Mali-G52 and Mali-G57 tablets, Xclipse 940 and PowerVR DXT. PowerVR BXM is not supported yet.

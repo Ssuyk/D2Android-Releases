@@ -819,7 +819,8 @@
     <string name="install_fetch_failed">No se pudo contactar con Blizzard (%1$s). Revisa el wifi y vuelve a tocar Siguiente.</string>
 
     <string name="news_title">Novedades</string>
-    <string name="news_english">La lista de cambios está en inglés.</string>
+    <string name="news_english">Las entradas más antiguas están en inglés.</string>
+    <string name="news_asset">news/CHANGELOG.es.md</string>
     <string name="news_none">Esta versión no tiene lista de cambios.</string>
     <string name="settings_update_check">Buscar versiones nuevas una vez al día</string>
     <string name="settings_telemetry">Enviar estadísticas de uso anónimas</string>

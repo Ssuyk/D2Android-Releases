@@ -36,7 +36,9 @@ public class D2NewsActivity extends D2Activity {
         D2Style.hint(note);
         content.addView(note);
 
-        List<D2Changelog.Section> sections = D2Changelog.parse(read());
+        List<D2Changelog.Section> sections = D2Changelog.parse(read(D2Changelog.ASSET));
+        String local = getString(R.string.news_asset);
+        if (!local.equals(D2Changelog.ASSET)) D2Changelog.translate(sections, D2Changelog.parse(read(local)));
         if (sections.isEmpty()) {
             TextView none = new TextView(this);
             none.setText(getString(R.string.news_none));
@@ -65,8 +67,8 @@ public class D2NewsActivity extends D2Activity {
         setContentView(scrollView);
     }
 
-    private String read() {
-        try (InputStream in = getAssets().open(D2Changelog.ASSET)) {
+    private String read(String asset) {
+        try (InputStream in = getAssets().open(asset)) {
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             byte[] buffer = new byte[8192];
             int n;

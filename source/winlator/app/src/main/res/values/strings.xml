@@ -820,6 +820,7 @@
 
     <string name="news_title">What\'s new</string>
     <string name="news_english">The list of changes is in English.</string>
+    <string name="news_asset">news/CHANGELOG.md</string>
     <string name="news_none">This version has no list of changes.</string>
     <string name="settings_update_check">Look for new versions once a day</string>
     <string name="settings_telemetry">Send anonymous usage statistics</string>

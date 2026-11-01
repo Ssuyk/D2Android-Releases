@@ -819,7 +819,8 @@
     <string name="install_fetch_failed">Blizzard non è raggiungibile (%1$s). Controlla la Wi-Fi e tocca di nuovo Avanti.</string>
 
     <string name="news_title">Novità</string>
-    <string name="news_english">L\'elenco delle modifiche è in inglese.</string>
+    <string name="news_english">Le voci più vecchie sono in inglese.</string>
+    <string name="news_asset">news/CHANGELOG.it.md</string>
     <string name="news_none">Questa versione non ha un elenco delle modifiche.</string>
     <string name="settings_update_check">Cerca nuove versioni una volta al giorno</string>
     <string name="settings_telemetry">Invia statistiche d\'uso anonime</string>

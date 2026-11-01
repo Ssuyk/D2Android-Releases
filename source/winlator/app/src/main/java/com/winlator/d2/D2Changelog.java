@@ -23,6 +23,14 @@ public final class D2Changelog {
         }
     }
 
+
+    public static void translate(List<Section> sections, List<Section> translated) {
+        for (int i = 0; i < sections.size(); i++)
+            for (Section t : translated)
+                if (t.version.equals(sections.get(i).version) && !t.items.isEmpty()) sections.set(i, t);
+    }
+
+
     public static List<Section> parse(String text) {
         List<Section> sections = new ArrayList<>();
         Section current = null;

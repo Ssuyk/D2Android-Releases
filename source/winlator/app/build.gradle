@@ -11,7 +11,7 @@ android {
         minSdkVersion 26
         targetSdkVersion 28
 
-        versionCode((project.findProperty('d2VersionCode') ?: '33') as Integer)
+        versionCode((project.findProperty('d2VersionCode') ?: '34') as Integer)
         versionName(project.findProperty('d2VersionName') ?: "12.0")
     }
 
@@ -143,7 +143,7 @@ dependencies {
 
 
 def d2NewsCopy = tasks.register('d2NewsAsset', Copy) {
-    from rootProject.file('../public/CHANGELOG.md')
+    from(rootProject.file('../public')) { include 'CHANGELOG*.md' }
     into "$buildDir/generated/d2news/news"
 }
 preBuild.dependsOn d2NewsCopy

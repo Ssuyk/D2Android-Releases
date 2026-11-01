@@ -816,7 +816,8 @@
     <string name="install_fetch_failed">Blizzard nicht erreichbar (%1$s). WLAN prüfen und erneut auf Weiter tippen.</string>
 
     <string name="news_title">Neuigkeiten</string>
-    <string name="news_english">Die Liste der Änderungen ist auf Englisch.</string>
+    <string name="news_english">Ältere Einträge sind auf Englisch.</string>
+    <string name="news_asset">news/CHANGELOG.de.md</string>
     <string name="news_none">Diese Version hat keine Liste der Änderungen.</string>
     <string name="settings_update_check">Einmal am Tag nach neuen Versionen suchen</string>
     <string name="settings_telemetry">Anonyme Nutzungsstatistik senden</string>
