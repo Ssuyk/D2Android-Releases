@@ -40,6 +40,7 @@
 static int invGridW = INV_W, invGridH = INV_H;
 
 static void putPanelGrids(Packet* p, void* player);
+static void putShopWares(Packet* p);
 
 
 #include "d2cats.h"

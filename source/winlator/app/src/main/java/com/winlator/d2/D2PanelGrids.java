@@ -29,6 +29,11 @@ final class D2PanelGrids {
 
     final List<int[]> items = new ArrayList<>();
 
+    // Shop wares as {location << 16 | node page << 8 | body location, x, y, w, h}. The tab a ware is on is not known, but
+    // the wares of the visible tab are expected to share the key of the ware under the pointer.
+    final List<int[]> wares = new ArrayList<>();
+    int hoveredWareKey = -1;
+
     private D2PanelGrids() {}
 
 
@@ -50,6 +55,15 @@ final class D2PanelGrids {
             int xy = d[at + 1] & 0xFF, wh = d[at + 2] & 0xFF;
             g.items.add(new int[]{d[at] & 0xFF, xy >> 4, xy & 15, wh >> 4, wh & 15});
         }
+        if (at >= length) return g;
+        int wares = d[at++] & 0xFF;
+        if (at + wares * 5 + 1 > length) return g;
+        for (int i = 0; i < wares; i++, at += 5) {
+            int key = (d[at] & 0xFF) << 16 | (d[at + 1] & 0xFF) << 8 | (d[at + 2] & 0xFF), xy = d[at + 3] & 0xFF, wh = d[at + 4] & 0xFF;
+            g.wares.add(new int[]{key, xy >> 4, xy & 15, wh >> 4, wh & 15});
+        }
+        int hovered = d[at] & 0xFF;
+        g.hoveredWareKey = hovered < wares ? g.wares.get(hovered)[0] : -1;
         return g;
     }
 
@@ -72,6 +86,20 @@ final class D2PanelGrids {
             if (g != null && g.cols == 10 && g.rows == 10) return g;
         }
         return grid(ROW_TRADE_1);
+    }
+
+
+    List<int[]> waresWithKey(int key) {
+        List<int[]> out = new ArrayList<>();
+        for (int[] it : wares) if (it[0] == key) out.add(new int[]{it[1], it[2], it[3], it[4]});
+        // Wares that overlap cannot be on one tab: the key does not tell the tabs apart.
+        for (int i = 0; i < out.size(); i++) {
+            for (int j = i + 1; j < out.size(); j++) {
+                int[] a = out.get(i), b = out.get(j);
+                if (a[0] < b[0] + b[2] && b[0] < a[0] + a[2] && a[1] < b[1] + b[3] && b[1] < a[1] + a[3]) return null;
+            }
+        }
+        return out;
     }
 
 

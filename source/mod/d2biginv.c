@@ -326,4 +326,54 @@ static void putPanelGrids(Packet* p, void* player) {
         item = RDP(data, IDATA_NEXTINV);
     }
     p->data[at] = (BYTE) n;
+    putShopWares(p);
+}
+
+
+static DWORD shopWaresLogged;
+
+
+static void putShopWares(Packet* p) {
+    void* npc = shopNpc();
+    void* hover = compareAvailable ? RDP(client, RVA_HoverItem) : NULL;
+    int at = p->len, n = 0, hovered = 0xFF, guard = 0;
+    DWORD sum = npc ? RD32(npc, U_ID) : 0;
+    putU8(p, 0);
+    void* inventory = npc ? RDP(npc, U_INVENTORY) : NULL;
+    for (void* item = readable(inventory, 0x24) ? RDP(inventory, INV_FIRST) : NULL; item && guard < 512 && n < 254; guard++) {
+        void* data = RDP(item, U_DATA);
+        if (!readable(data, 0x70)) break;
+        void* path = RDP(item, U_PATH);
+        BYTE* txt = (BYTE*) fGetItemText(RD32(item, U_TXTNO));
+        if (readable(path, 0x14) && readable(txt, 0x120)) {
+            int x0 = (int) RD32(path, IPATH_X), y0 = (int) RD32(path, IPATH_Y);
+            if (x0 >= 0 && y0 >= 0 && x0 < 16 && y0 < 16) {
+                BYTE loc = RD8(data, IDATA_LOCATION), page = RD8(data, IDATA_NODEPAGE), body = RD8(data, IDATA_BODYLOC);
+                if (item == hover) hovered = n;
+                putU8(p, loc);
+                putU8(p, page);
+                putU8(p, body);
+                putU8(p, (unsigned) (x0 << 4 | y0));
+                putU8(p, (unsigned) ((txt[ITXT_WIDTH] & 15) << 4 | (txt[ITXT_HEIGHT] & 15)));
+                sum = sum * 31 + (DWORD) (loc << 16 | page << 8 | body) * 7 + (DWORD) (x0 << 4 | y0);
+                n++;
+            }
+        }
+        item = RDP(data, IDATA_NEXTINV);
+    }
+    p->data[at] = (BYTE) n;
+    putU8(p, (unsigned) hovered);
+    if (npc && n && sum != shopWaresLogged) {
+        shopWaresLogged = sum;
+        guard = 0;
+        logLine("shop wares of npc %lu: %d items (location / node page / body location at x,y)", (unsigned long) RD32(npc, U_ID), n);
+        for (void* item = RDP(inventory, INV_FIRST); item && guard < n; guard++) {
+            void* data = RDP(item, U_DATA);
+            void* path = RDP(item, U_PATH);
+            if (!readable(data, 0x70) || !readable(path, 0x14)) break;
+            logLine("  %.4s %d/%d/%d at %d,%d", itemCode(item), RD8(data, IDATA_LOCATION), RD8(data, IDATA_NODEPAGE),
+                RD8(data, IDATA_BODYLOC), (int) RD32(path, IPATH_X), (int) RD32(path, IPATH_Y));
+            item = RDP(data, IDATA_NEXTINV);
+        }
+    }
 }

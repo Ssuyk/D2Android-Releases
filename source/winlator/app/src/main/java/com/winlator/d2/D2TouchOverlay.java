@@ -8568,6 +8568,9 @@ public class D2TouchOverlay extends View {
     }
 
 
+    private int shopWareKey = -1;
+
+
     private void padInventoryStep(int dir) {
         D2ModState s = mod;
         D2PanelGrids grids = modLink.panelGrids();
@@ -8578,7 +8581,12 @@ public class D2TouchOverlay extends View {
             others.add(new D2PadInventory.Area(grids.stash(), whole ? grids.itemsAt(D2PanelGrids.PLACE_STASH) : null));
         if (grids != null && s.isOpen(D2ModState.UI_CUBE))
             others.add(new D2PadInventory.Area(grids.grid(D2PanelGrids.ROW_CUBE), whole ? grids.itemsAt(D2PanelGrids.PLACE_CUBE) : null));
-        if (grids != null && s.isOpen(D2ModState.UI_NPCSHOP)) others.add(new D2PadInventory.Area(grids.shop(), null));
+        if (grids != null && grids.hoveredWareKey >= 0) shopWareKey = grids.hoveredWareKey;
+        if (grids != null && s.isOpen(D2ModState.UI_NPCSHOP)) {
+            java.util.List<int[]> wares = whole && shopWareKey >= 0 ? grids.waresWithKey(shopWareKey) : null;
+            others.add(new D2PadInventory.Area(grids.shop(), wares != null && !wares.isEmpty() ? wares : null));
+        }
+        else shopWareKey = -1;
         float[][] slots = D2PadInventory.slots(D2Settings.bigInventory(getContext()), s.gameWidth, s.gameHeight,
             whole ? grids.itemsAt(D2PanelGrids.PLACE_INVENTORY) : null, others, s.isOpen(D2ModState.UI_NPCSHOP));
         float[] g = desktopToGame(xServer.pointer.getX(), xServer.pointer.getY(), s);
