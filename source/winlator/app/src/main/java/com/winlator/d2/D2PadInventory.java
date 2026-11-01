@@ -10,6 +10,7 @@ final class D2PadInventory {
 
     private static final int PANEL_X = 400, PANEL_Y = 60, CELL = 29, COLS = 10, GRID_LEFT = 19;
     private static final int FREE_STEP = 15;
+    private static final double IN_LINE_FIRST = 10000;
 
 
     private static final float[][] SWAP_TABS_BIG = {{20.9f, 12.7f, 16, 10}, {56.9f, 12.7f, 16, 10}, {267.3f, 12.7f, 16, 10}, {301.7f, 12.7f, 16, 10}};
@@ -119,9 +120,13 @@ final class D2PadInventory {
             float dx = slots[i][0] - fx, dy = slots[i][1] - fy;
             double along = dx * ux + dy * uy, across = Math.abs(dx * uy - dy * ux);
             if (along < 4) continue;
-            double gap = Math.max(0, across - half - (ux != 0 ? slots[i][3] : slots[i][2]));
+            double reach = half + (ux != 0 ? slots[i][3] : slots[i][2]);
+            double gap = Math.max(0, across - reach);
             if (gap > along) continue;
-            double score = along + 3 * gap + across / 2;
+            // Slots that share the column (or the row) with this one come first, however far: a neighbour beside the line
+            // with a closer centre must not win, as a tall spear beside the katar above did.
+            boolean inLine = across < reach - 1;
+            double score = (inLine ? 0 : IN_LINE_FIRST) + along + 3 * gap + across / 2;
             if (score < bestScore) {
                 bestScore = score;
                 best = slots[i];
