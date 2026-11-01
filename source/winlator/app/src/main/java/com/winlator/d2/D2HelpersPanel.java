@@ -908,6 +908,7 @@ public final class D2HelpersPanel {
             case "tapMoves": return D2Settings.tapMoves(c);
             case "joystickVisible": return D2Settings.joystickVisible(c);
             case "padEnabled": return D2Settings.padEnabled(c);
+            case "padInventoryNav": return D2Settings.padInventoryNav(c);
             default: throw new IllegalArgumentException("no switch " + key);
         }
     }

@@ -460,6 +460,7 @@ public class D2TouchOverlay extends View {
 
     private boolean padLayer2;
     private int padCursorSpeed = D2Gamepad.CURSOR_SPEED_DEFAULT;
+    private boolean padInventoryNav = true;
     private long padPointerAt, padPointerTick, padPointerFullSince;
     private float padRestX, padRestY;
 
@@ -703,6 +704,7 @@ public class D2TouchOverlay extends View {
         padEnabled = D2Settings.padEnabled(context);
         padDeadzone = D2Settings.padDeadzone(context);
         padCursorSpeed = D2Settings.padCursorSpeed(context);
+        padInventoryNav = D2Settings.padInventoryNav(context);
         padMap = D2Gamepad.parseMap(D2Settings.padMap(context));
         if (!padEnabled) padUsed(false);
         joystickVisible = D2Settings.joystickVisible(context);
@@ -8522,6 +8524,27 @@ public class D2TouchOverlay extends View {
     }
 
 
+    private boolean padInventorySnaps() {
+        D2ModState s = mod;
+        return padInventoryNav && s != null && s.isOpen(D2ModState.UI_INVENTORY) && !pauseWanted && s.gameWidth > 0 && s.gameHeight > 0
+            && padPointerMode();
+    }
+
+
+    private void padInventoryStep(int dir) {
+        D2ModState s = mod;
+        float[][] slots = D2PadInventory.slots(D2Settings.bigInventory(getContext()), s.gameWidth, s.gameHeight);
+        float[] g = desktopToGame(xServer.pointer.getX(), xServer.pointer.getY(), s);
+        float[] to = D2PadInventory.step(slots, g[0], g[1], dir);
+        int[] p = gameToDesktop(to[0] - positionShiftX, to[1] - positionShiftY);
+        D2Trace.log("pad: inventory step " + dir + " to " + p[0] + "," + p[1]);
+        targetX = targetY = -1;
+        lastSentFromX = lastSentFromY = Integer.MIN_VALUE;
+        enqueue(moveTo(p[0], p[1]));
+        postInvalidateDelayed(20);
+    }
+
+
     void padFixed(int act) {
 
 
@@ -8691,6 +8714,10 @@ public class D2TouchOverlay extends View {
                 int at = D2Gamepad.escMenuEntryAt(g[0], g[1], s.gameWidth, s.gameHeight);
                 padEscMenuTo(s, D2Gamepad.escMenuStep(at, row == 3 ? -1 : 1));
             }
+            return;
+        }
+        if (padInventorySnaps()) {
+            padInventoryStep(row);
             return;
         }
         if (npcMenuOpen() && (row == 2 || row == 3)) {

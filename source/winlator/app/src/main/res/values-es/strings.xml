@@ -572,6 +572,8 @@
     <string name="helper_padDeadzone_label">Cuánto hay que mover el stick</string>
     <string name="helper_padCursorSpeed_label">Velocidad del puntero en ventanas</string>
     <string name="helper_padCursorSpeed_info">Lo rápido que el stick mueve el puntero en el inventario, el cofre y la tienda.</string>
+    <string name="helper_padInventoryNav_label">Cruceta entre casillas</string>
+    <string name="helper_padInventoryNav_info">Con el inventario abierto, la cruceta salta de casilla en casilla, equipo incluido. El stick sigue moviendo el puntero libremente.</string>
     <string name="helper_padDeadzone_info">Súbelo si el personaje anda solo.</string>
     <string name="helper_group_schultertasten">Gatillos</string>
     <string name="helper_triggers_label">Gatillos</string>

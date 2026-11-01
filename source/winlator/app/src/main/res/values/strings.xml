@@ -571,6 +571,8 @@
     <string name="helper_padDeadzone_label">How far the stick has to move</string>
     <string name="helper_padCursorSpeed_label">Pointer speed in windows</string>
     <string name="helper_padCursorSpeed_info">How fast the stick moves the mouse pointer in inventory, stash and shop.</string>
+    <string name="helper_padInventoryNav_label">D-pad moves between inventory slots</string>
+    <string name="helper_padInventoryNav_info">With the inventory open, the D-pad jumps the pointer from slot to slot, equipment included. The stick still moves it freely.</string>
     <string name="helper_padDeadzone_info">Turn it up if the character walks by itself.</string>
     <string name="helper_group_schultertasten">Shoulder triggers</string>
     <string name="helper_triggers_label">Shoulder triggers</string>

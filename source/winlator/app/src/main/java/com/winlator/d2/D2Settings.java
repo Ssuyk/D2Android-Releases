@@ -417,6 +417,12 @@ public final class D2Settings {
         return prefs(context).getBoolean(KEY_PAD_ENABLED, true);
     }
 
+    public static final String KEY_PAD_INVENTORY_NAV = "padInventoryNav";
+
+    public static boolean padInventoryNav(Context context) {
+        return prefs(context).getBoolean(KEY_PAD_INVENTORY_NAV, true);
+    }
+
 
     public static int padDeadzone(Context context) {
         return clamp(prefs(context).getInt(KEY_PAD_DEADZONE, D2Gamepad.DEADZONE_DEFAULT), D2Gamepad.DEADZONE_MIN, D2Gamepad.DEADZONE_MAX);

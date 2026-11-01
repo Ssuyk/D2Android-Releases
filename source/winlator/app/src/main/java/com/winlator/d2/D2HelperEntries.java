@@ -63,7 +63,7 @@ public final class D2HelperEntries {
         group(TAB_CONTROL, "Gegenstände", "itemsNeedLabels", "ringSort");
         group(TAB_CONTROL, "Menü oben rechts", "menuPinned");
         group(TAB_CONTROL, "Schultertasten", "triggers");
-        group(TAB_CONTROL, "Gamepad", "padEnabled", "padMap", "padDeadzone", "padCursorSpeed");
+        group(TAB_CONTROL, "Gamepad", "padEnabled", "padMap", "padDeadzone", "padCursorSpeed", "padInventoryNav");
         group(TAB_GAME, "Spiel", "players", "largeStacks", "materials", "resume");
         group(TAB_GAME, "Hilfe", "intro");
         group(TAB_GAME, "Fehlersuche", "diagnose", "report");
@@ -71,6 +71,7 @@ public final class D2HelperEntries {
         DEPENDS.put("padMap", "padEnabled");
         DEPENDS.put("padDeadzone", "padEnabled");
         DEPENDS.put("padCursorSpeed", "padEnabled");
+        DEPENDS.put("padInventoryNav", "padEnabled");
         DEPENDS.put("aimRange", "aimAssist");
         DEPENDS.put("aimCone", "aimAssist");
         DEPENDS.put("aimBlind", "aimAssist");
@@ -233,6 +234,7 @@ public final class D2HelperEntries {
             padSlots()));
         l.add(new Entry(Kind.SLIDER, "padDeadzone", "helper_padDeadzone_label", s, TAB_CONTROL, false, null, "helper_padDeadzone_info"));
         l.add(new Entry(Kind.SLIDER, "padCursorSpeed", "helper_padCursorSpeed_label", s, TAB_CONTROL, false, null, "helper_padCursorSpeed_info"));
+        l.add(new Entry(Kind.CHECK, "padInventoryNav", "helper_padInventoryNav_label", s, TAB_CONTROL, false, null, "helper_padInventoryNav_info"));
 
         s = "Zielhilfe";
         l.add(new Entry(Kind.CHECK, "aimAssist", "helper_aimAssist_label", s, TAB_CONTROL, false, null, null));
@@ -372,7 +374,7 @@ public final class D2HelperEntries {
         section(SET_CONTROL, "joystick", "joystickVisible", "hidePointer");
         section(SET_CONTROL, "zielhilfe", "aimAssist", "aimRangeMelee", "aimRange", "aimCone", "aimBlind", "takeReach", "highlight");
         section(SET_CONTROL, "schultertasten", "triggers");
-        section(SET_CONTROL, "gamepad", "padEnabled", "padMap", "padDeadzone", "padCursorSpeed");
+        section(SET_CONTROL, "gamepad", "padEnabled", "padMap", "padDeadzone", "padCursorSpeed", "padInventoryNav");
         section(SET_CONTROL, "menue", "menuPinned", "editButtons");
         section(SET_DISPLAY, "untere_leiste", "hud", "orbNumbers", "skillNames");
         section(SET_DISPLAY, "infoleiste", "infoGrid", "gridSlot1", "gridSlot2", "gridSlot3", "gridSlot4", "clockTop", "boxSlot1",
@@ -444,6 +446,7 @@ public final class D2HelperEntries {
         keywords("padEnabled", "gamepad controller pad xbox");
         keywords("padMap", "gamepad controller pad tasten buttons belegung zuweisung");
         keywords("padCursorSpeed", "gamepad controller pad zeiger cursor maus mouse pointer tempo speed geschwindigkeit");
+        keywords("padInventoryNav", "gamepad controller pad dpad inventar inventory inventaire slot console");
         keywords("bigStash", "truhe stash gross big kiste");
         keywords("bigInventory", "inventar inventory gross big platz rucksack taschen");
         keywords("swShared", "truhe stash geteilt shared plugy seiten gold");

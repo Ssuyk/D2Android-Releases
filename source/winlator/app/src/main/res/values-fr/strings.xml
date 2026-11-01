@@ -572,6 +572,8 @@
     <string name="helper_padDeadzone_label">Course du stick avant réaction</string>
     <string name="helper_padCursorSpeed_label">Vitesse du pointeur dans les fenêtres</string>
     <string name="helper_padCursorSpeed_info">La vitesse à laquelle le stick bouge le pointeur dans l\'inventaire, le coffre et la boutique.</string>
+    <string name="helper_padInventoryNav_label">Croix directionnelle entre les cases</string>
+    <string name="helper_padInventoryNav_info">Inventaire ouvert, la croix directionnelle saute de case en case, équipement compris. Le stick déplace toujours le pointeur librement.</string>
     <string name="helper_padDeadzone_info">Augmente-la si le personnage marche tout seul.</string>
     <string name="helper_group_schultertasten">Gâchettes</string>
     <string name="helper_triggers_label">Gâchettes</string>

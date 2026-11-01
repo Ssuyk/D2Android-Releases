@@ -568,6 +568,8 @@
     <string name="helper_padDeadzone_label">Wie weit der Stick sich bewegen muss</string>
     <string name="helper_padCursorSpeed_label">Tempo des Zeigers in Fenstern</string>
     <string name="helper_padCursorSpeed_info">So schnell bewegt der Stick den Mauszeiger in Inventar, Truhe und Laden.</string>
+    <string name="helper_padInventoryNav_label">Steuerkreuz springt zwischen Feldern</string>
+    <string name="helper_padInventoryNav_info">Bei offenem Inventar springt der Zeiger mit dem Steuerkreuz von Feld zu Feld, Ausrüstung eingeschlossen. Der Stick bewegt ihn weiter frei.</string>
     <string name="helper_padDeadzone_info">Höher stellen, wenn der Charakter von selbst läuft.</string>
     <string name="helper_group_schultertasten">Schultertasten</string>
     <string name="helper_triggers_label">Schultertasten</string>

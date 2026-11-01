@@ -572,6 +572,8 @@
     <string name="helper_padDeadzone_label">Quanto deve muoversi lo stick</string>
     <string name="helper_padCursorSpeed_label">Velocità del puntatore nelle finestre</string>
     <string name="helper_padCursorSpeed_info">Quanto veloce lo stick muove il puntatore in inventario, forziere e negozio.</string>
+    <string name="helper_padInventoryNav_label">Croce direzionale tra le caselle</string>
+    <string name="helper_padInventoryNav_info">Con l\'inventario aperto, la croce direzionale salta di casella in casella, equipaggiamento incluso. Lo stick muove ancora il puntatore liberamente.</string>
     <string name="helper_padDeadzone_info">Alzalo se il personaggio cammina da solo.</string>
     <string name="helper_group_schultertasten">Tasti dorsali</string>
     <string name="helper_triggers_label">Tasti dorsali</string>
