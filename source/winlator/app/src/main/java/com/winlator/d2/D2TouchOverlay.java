@@ -8145,6 +8145,11 @@ public class D2TouchOverlay extends View {
         D2Trace.log("pad " + owner.label + ": click " + click + " at " + xServer.pointer.getX() + "," + xServer.pointer.getY());
         owner.heldAction = D2TriggerAction.NOTHING;
         D2ModState s = mod;
+        if (click == D2Gamepad.CLICK_LEFT && s != null && s.isOpen(D2ModState.UI_NPCSHOP)) {
+            // A click off the wares may change the tab: the wares to stop at are known again once one is under the pointer.
+            D2PanelGrids grids = modLink.panelGrids();
+            if (grids == null || grids.hoveredWareKey < 0) shopWareKey = -1;
+        }
         if (click == D2Gamepad.CLICK_LEFT && s != null && s.npcTalking) {
             pressKey(VK_ESCAPE);
             return;

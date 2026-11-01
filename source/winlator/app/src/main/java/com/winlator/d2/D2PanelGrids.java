@@ -29,8 +29,8 @@ final class D2PanelGrids {
 
     final List<int[]> items = new ArrayList<>();
 
-    // Shop wares as {location << 16 | node page << 8 | body location, x, y, w, h}. The tab a ware is on is not known, but
-    // the wares of the visible tab are expected to share the key of the ware under the pointer.
+    // Shop wares as {location << 16 | node page << 8 | body location, x, y, w, h}. The location is the tab (0 armor, 1 and 2
+    // weapons, 3 misc, seen at Charsi); which tab is visible is not known, so the ware under the pointer tells it.
     final List<int[]> wares = new ArrayList<>();
     int hoveredWareKey = -1;
 
