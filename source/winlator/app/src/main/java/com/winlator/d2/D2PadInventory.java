@@ -12,6 +12,8 @@ final class D2PadInventory {
     private static final int FREE_STEP = 15;
 
 
+    private static final float[][] SWAP_TABS_BIG = {{20.9f, 12.7f, 16, 10}, {56.9f, 12.7f, 16, 10}, {267.3f, 12.7f, 16, 10}, {301.7f, 12.7f, 16, 10}};
+
     private static final float[][] SHOP_BUTTONS = {
         {120.5f, 74.4f, 36, 11}, {202.7f, 74.4f, 36, 11}, {282, 74.4f, 36, 11}, {361.8f, 74.4f, 36, 11},
         {212.6f, 461.5f, 16, 16}, {265, 461.5f, 16, 16}, {317.5f, 461.5f, 16, 16}, {369.4f, 461.5f, 16, 16},
@@ -63,6 +65,7 @@ final class D2PadInventory {
             float fx = (gameWidth - 800) / 2f, fy = (gameHeight - 600) / 2f;
             for (float[] b : SHOP_BUTTONS) out.add(new float[]{fx + b[0], fy + b[1], b[2], b[3]});
         }
+        if (big) for (float[] t : SWAP_TABS_BIG) out.add(new float[]{ox + t[0], oy + t[1], t[2], t[3]});
         for (int[] b : boxes) out.add(new float[]{ox + b[0] + b[2] / 2f, oy + b[1] + b[3] / 2f, b[2] / 2f, b[3] / 2f});
         float[][] slots = out.toArray(new float[0][]);
 
@@ -118,7 +121,7 @@ final class D2PadInventory {
             if (along < 4) continue;
             double gap = Math.max(0, across - half - (ux != 0 ? slots[i][3] : slots[i][2]));
             if (gap > along) continue;
-            double score = along + 3 * gap;
+            double score = along + 3 * gap + across / 2;
             if (score < bestScore) {
                 bestScore = score;
                 best = slots[i];
