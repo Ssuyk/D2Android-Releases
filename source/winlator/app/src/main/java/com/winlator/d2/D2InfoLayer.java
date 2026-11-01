@@ -26,6 +26,7 @@ final class D2InfoLayer {
 
     static final class State {
         boolean grid, box, arrow, boxOpen, onBar;
+        float stamina = -1f;
 
         final String[] gridText = new String[D2InfoGrid.SLOTS];
         final boolean[] gridWhite = new boolean[D2InfoGrid.SLOTS];
@@ -72,6 +73,12 @@ final class D2InfoLayer {
                 if (art.width(D2Layer.FONT8, t) <= room) l.text(cx, cy + DOWN_FONT8, D2Layer.FONT8, colour, D2Layer.CENTRE, t);
                 else l.text(cx, cy + DOWN_FONT6, D2Layer.FONT6, colour, D2Layer.CENTRE,
                     small(t, s -> art.width(D2Layer.FONT6, s), room));
+            }
+            if (st.stamina > 0) {
+                float[] r = D2InfoGrid.stamina(gameWidth, gameHeight, st.stamina);
+                int x = Math.round(r[0]), y = Math.round(r[1]);
+                l.rect(x, y, Math.max(1, Math.round(r[2]) - x), Math.round(r[3]) - y, art.colour(D2InfoGrid.staminaRgb(st.stamina)),
+                    D2Layer.OPAQUE);
             }
         }
         if (st.box && st.boxOpen) {

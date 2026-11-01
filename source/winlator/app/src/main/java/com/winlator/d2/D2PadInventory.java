@@ -67,6 +67,12 @@ final class D2PadInventory {
 
 
 
+    static float[] inventoryItem(boolean big, int gameWidth, int gameHeight, int x, int y, int w, int h) {
+        float gx = (gameWidth - 800) / 2f + PANEL_X + GRID_LEFT - 1, gy = (gameHeight - 600) / 2f + PANEL_Y + (big ? GRID_TOP_BIG : GRID_TOP_SMALL) - 1;
+        return new float[]{gx + (x + Math.max(1, w) / 2f) * CELL, gy + (y + Math.max(1, h) / 2f) * CELL};
+    }
+
+
     static float[][] slots(boolean big, int gameWidth, int gameHeight, java.util.List<int[]> items, java.util.List<Area> others,
                            boolean shop) {
         float ox = (gameWidth - 800) / 2f + PANEL_X, oy = (gameHeight - 600) / 2f + PANEL_Y;

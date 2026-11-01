@@ -7,6 +7,7 @@
 
 - Gamepad in windows: the D-pad jumps the pointer from slot to slot, one stop per item whatever its size and one per empty cell. It covers the inventory, the equipment, the weapon swap tabs, the stash, the cube and the merchant, and moves from one window to the other. At the merchant it also reaches the tabs and the buttons such as repair. While an item hangs on the pointer it moves cell by cell. Holding a direction keeps moving. Turn it off with "D-pad moves between inventory slots" in the gamepad settings.
 - Gamepad at the stash: Y moves the item under the pointer between the inventory and the stash, LB and RB turn the PlugY stash pages. At the merchant, LB and RB switch tabs.
+- Gamepad: Y identifies the item under the pointer with an identify tome or scroll from the inventory, and the item's description says "Press Y to identify". The stamina bar stays visible along the bottom of the info grid, which covers the game's own.
 - Action button: new setting "Reach for items and objects" sets how far items and objects can be taken. A circle shows the reach while the slider moves.
 - Snapdragon 8 Gen 2 (Adreno 740, e.g. Galaxy S23): the picture no longer flickers.
 - Saved games: when the saves are moved into the app, a save already there is no longer overwritten. If a file differs, the old folder is kept.

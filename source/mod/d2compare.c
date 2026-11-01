@@ -62,6 +62,9 @@ static DWORD compareUntil;
 
 
 static int valueLineAdd(void);
+static int idHintLineAdd(void);
+static void idHintLineRemove(int added);
+static int idHintWanted(DWORD now);
 static void valueLineRemove(int added);
 static int valueWanted(DWORD now);
 static int diffLinesAdd(void);
@@ -302,11 +305,13 @@ __attribute__((force_align_arg_pointer)) static void __cdecl hoverDrawn(void) {
 
 
     int added = valueLineAdd();
+    int hintAdded = idHintLineAdd();
 
     int diffAdded = diffLinesAdd();
     fDrawHover();
     if (compareOn) drawComparison();
     diffLinesRemove(diffAdded);
+    idHintLineRemove(hintAdded);
     valueLineRemove(added);
 }
 
@@ -325,6 +330,6 @@ static void applyCompare(int on) {
 static void updateCompare(DWORD now) {
     if (!compareAvailable) return;
     compareOn = (int) (now - compareUntil) < 0;
-    int want = valueWanted(now) | diffWanted(now) | compareOn | layersWanted(now);
+    int want = valueWanted(now) | diffWanted(now) | compareOn | layersWanted(now) | idHintWanted(now);
     if (want != compareApplied) applyCompare(want);
 }

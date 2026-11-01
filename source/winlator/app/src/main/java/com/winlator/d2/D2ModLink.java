@@ -877,6 +877,15 @@ public final class D2ModLink {
 
 
 
+    public static final int CMD_ID_HINT = 38;
+
+
+    public void idHint(String text) {
+        byte[] t = text.getBytes(java.nio.charset.StandardCharsets.UTF_16LE);
+        send(command(CMD_ID_HINT, t.length).put(t));
+    }
+
+
     public void valueRules(byte[] payload) {
         send(command(CMD_VALUE, payload.length).put(payload));
     }

@@ -3244,6 +3244,7 @@ static void stashTest(BYTE op, BYTE value);
 #include "d2teleport.c"
 #include "d2objects.c"
 #include "d2value.c"
+#include "d2idhint.c"
 #include "d2diff.c"
 #include "d2statprobe.c"
 #include "d2sound.c"
@@ -3303,6 +3304,7 @@ static void handleCommands(void* player, int stale) {
         if (cmd == CMD_CUBE_OPEN && player) cubeOpenCommand(player);
         if (cmd == CMD_LABELS && n >= 9) labelFilterCommand(buf, n);
         if (cmd == CMD_VALUE) valueCommand(buf, n);
+        if (cmd == CMD_ID_HINT) idHintCommand(buf, n);
         if (cmd == CMD_FRAMES) framesCommand(buf, n);
         if (cmd == CMD_MAP) mapCommand(buf, n);
         if (cmd == CMD_TELEPORT) teleportCommand(buf, n);

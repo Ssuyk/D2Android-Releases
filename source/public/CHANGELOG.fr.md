@@ -6,6 +6,7 @@
 
 - Manette dans les fenêtres : la croix directionnelle fait sauter le pointeur de case en case, un arrêt par objet quelle que soit sa taille et un par case vide. Cela couvre l'inventaire, l'équipement, les onglets d'échange d'armes, le coffre, le cube et le marchand, et passe d'une fenêtre à l'autre. Chez le marchand, elle atteint aussi les onglets et les boutons comme la réparation. Quand un objet est accroché au pointeur, elle avance case par case. Maintenir une direction continue le déplacement. Se désactive avec « Croix directionnelle entre les cases » dans les réglages de la manette.
 - Manette au coffre : Y déplace l'objet sous le pointeur entre l'inventaire et le coffre, LB et RB tournent les pages du coffre PlugY. Chez le marchand, LB et RB changent d'onglet.
+- Manette : Y identifie l'objet sous le pointeur avec un tome ou un parchemin d'identification de l'inventaire, et la description de l'objet indique « Appuyez sur Y pour identifier ». La barre d'endurance reste visible au bas de la grille d'infos, qui recouvre celle du jeu.
 - Bouton d'action : nouveau réglage « Portée pour objets et éléments » pour la distance à laquelle on ramasse les objets et utilise les éléments. Un cercle montre la portée pendant que le curseur bouge.
 - Snapdragon 8 Gen 2 (Adreno 740, p. ex. Galaxy S23) : l'image ne scintille plus.
 - Parties sauvegardées : quand les sauvegardes sont déplacées dans l'application, une sauvegarde déjà présente n'est plus écrasée. Si un fichier diffère, l'ancien dossier est conservé.

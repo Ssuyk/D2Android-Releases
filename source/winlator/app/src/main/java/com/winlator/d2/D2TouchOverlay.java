@@ -243,6 +243,7 @@ public class D2TouchOverlay extends View {
     private final float[] materialsMapping = new float[3];
     private File gameDir;
     private long valueSentAt;
+    private long idHintSentAt;
 
     private boolean diffLines, diffCapable, diffSent;
 
@@ -2526,6 +2527,8 @@ public class D2TouchOverlay extends View {
             infoStrip.setLevel(points != null ? points.level : 0);
             infoStrip.setFacts(modLink != null ? modLink.gridFacts() : null);
             infoStrip.setExperience(modLink != null ? modLink.experience() : null);
+            infoStrip.setStamina(s != null && s.staminaKnown && s.maxStamina > 0 && !s.unlimitedStamina
+                ? s.stamina / (float) s.maxStamina : -1f);
         }
         boolean infoShown = infoStrip != null && !editMode && infoStrip.active();
 
@@ -5633,6 +5636,10 @@ public class D2TouchOverlay extends View {
             }
             modLink.valueRules(valuePayload);
         }
+        if (padActive && s.isPanelOpen() && hudNow - idHintSentAt > 1000) {
+            idHintSentAt = hudNow;
+            modLink.idHint(text(R.string.pad_identify_hint));
+        }
 
         D2Materials.Snapshot stash = modLink.materials();
         if (!materialsCapable && stash != null && stash.possible() && hudNow - stash.time < D2Materials.STALE_MS) {
@@ -8562,6 +8569,7 @@ public class D2TouchOverlay extends View {
         D2ModState s = mod;
         // Not tied to the D-pad setting: in these windows Y, LB and RB always take these roles over their own actions.
         if (s == null || pauseWanted || editMode || s.gameWidth <= 0 || s.gameHeight <= 0 || !padPointerMode()) return false;
+        if (button == D2Gamepad.Y && padIdentify(s)) return true;
         if (s.isOpen(D2ModState.UI_NPCSHOP) && (button == D2Gamepad.LB || button == D2Gamepad.RB)) {
             padShopTab(s, button == D2Gamepad.LB ? -1 : 1);
             return true;
@@ -8582,6 +8590,48 @@ public class D2TouchOverlay extends View {
             return true;
         }
         return false;
+    }
+
+
+    // Y on an unidentified item: right click on an identify tome or scroll in the inventory, then left click on the item,
+    // as a player would. With an empty tome the second click would pick the item up, so the tome needs charges.
+    private boolean padIdentify(D2ModState s) {
+        boolean inventoryShown = s.isOpen(D2ModState.UI_INVENTORY) || s.isOpen(D2ModState.UI_STASH) || s.isOpen(D2ModState.UI_CUBE)
+            || s.isOpen(D2ModState.UI_NPCSHOP);
+        com.winlator.d2.test.Zustand.Figur f = figur7();
+        com.winlator.d2.test.Zustand.Figur.Teil item = inventoryShown && s.hoverItemX >= 0 && s.hoverItemY >= 0
+            ? D2ItemMoves.itemAt(f, s.hoverItemPlace, s.hoverItemX, s.hoverItemY) : null;
+        D2Points points = modLink.points(2000);
+        if (item == null || item.identifiziert() || (points != null && points.cursorTaken)) return false;
+        D2ModItems carried = modLink.items();
+        com.winlator.d2.test.Zustand.Figur.Teil tool = null;
+        for (com.winlator.d2.test.Zustand.Figur.Teil t : f.gegenstaende) {
+            if (t.platz != D2ItemMoves.PLACE_INVENTORY) continue;
+            if ("ibk".equals(t.code) && carried != null && carried.idTome > 0) {
+                tool = t;
+                break;
+            }
+            if ("isc".equals(t.code) && tool == null) tool = t;
+        }
+        if (tool == null) {
+            D2Trace.log("pad Y: " + item.code + " unidentified, no identify tome with charges or scroll in the inventory");
+            showNote(text(R.string.pad_identify_none));
+            return true;
+        }
+        float[] g = D2PadInventory.inventoryItem(D2Settings.bigInventory(getContext()), s.gameWidth, s.gameHeight, tool.x, tool.y,
+            tool.breite, tool.hoehe);
+        int[] p = gameToDesktop(g[0] - positionShiftX, g[1] - positionShiftY);
+        int backX = xServer.pointer.getX(), backY = xServer.pointer.getY();
+        D2Trace.log("pad Y: identify " + item.code + " with " + tool.code + " at " + p[0] + "," + p[1]);
+        enqueue(moveTo(p[0], p[1]), settle(HOVER_SETTLE_MS));
+        setRmb(true);
+        enqueue(waitMs(50));
+        setRmb(false);
+        enqueue(waitMs(150), moveTo(backX, backY), settle(HOVER_SETTLE_MS));
+        setLmb(true);
+        enqueue(waitMs(50));
+        setLmb(false);
+        return true;
     }
 
 

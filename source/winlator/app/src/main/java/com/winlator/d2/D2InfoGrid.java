@@ -103,6 +103,23 @@ final class D2InfoGrid {
     }
 
 
+    // The grid covers the game's stamina bar, so it carries its own along its bottom edge.
+    static final int STAMINA_IN = 5, STAMINA_BOTTOM = 3, STAMINA_HEIGHT = 2;
+    static final int STAMINA_RGB = 0xC8A040, STAMINA_LOW_RGB = 0xB02020;
+
+
+    static float[] stamina(int gameWidth, int gameHeight, float filled) {
+        float[] b = block(gameWidth, gameHeight);
+        float left = b[0] + STAMINA_IN, right = b[2] - STAMINA_IN, bottom = b[3] - STAMINA_BOTTOM;
+        return new float[]{left, bottom - STAMINA_HEIGHT, left + (right - left) * Math.max(0f, Math.min(1f, filled)), bottom};
+    }
+
+
+    static int staminaRgb(float filled) {
+        return filled < 0.25f ? STAMINA_LOW_RGB : STAMINA_RGB;
+    }
+
+
     static float[] arrow(int gameWidth, int gameHeight) {
         float c = gameWidth / 2f;
         return new float[]{c - ARROW_HALF, gameHeight - ARROW_TOP, c + ARROW_HALF, gameHeight - ARROW_BOTTOM};

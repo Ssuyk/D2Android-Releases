@@ -109,6 +109,14 @@ public final class D2InfoStrip {
     }
 
 
+    private float stamina = -1f;
+
+
+    public void setStamina(float filled) {
+        stamina = filled;
+    }
+
+
     public void setExperience(long[] xp) {
 
 
@@ -249,6 +257,11 @@ public final class D2InfoStrip {
                 float k = wide > room ? scale * Math.max(0.6f, room / wide) : scale;
                 hud.drawSmallText(canvas, t, cx, cy, k, 255, highlighted[slots[i]] ? HIGHLIGHTED : NORMAL);
             }
+            if (stamina > 0) {
+                set(area, D2InfoGrid.stamina(gameWidth, gameHeight, stamina), scale, x0, y0);
+                fill.setColor(0xFF000000 | D2InfoGrid.staminaRgb(stamina));
+                canvas.drawRect(area, fill);
+            }
         }
 
         if (box && boxOpen && staminaKnown && !boxBlocked) {
@@ -293,6 +306,7 @@ public final class D2InfoStrip {
         st.grid = grid && staminaKnown;
         st.box = box && staminaKnown && !boxBlocked;
         st.boxOpen = boxOpen;
+        st.stamina = stamina;
         st.arrow = box && staminaKnown;
         st.onBar = xpBar && xp != null && D2InfoGrid.xpFilled(xp[0], xp[1], xp[2]) >= 0;
         for (int i = 0; i < D2InfoGrid.SLOTS; i++) {
