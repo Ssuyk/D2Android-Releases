@@ -284,3 +284,46 @@ static void putBigInvFields(Packet* p, void* hero) {
     putU8(p, h);
     putU8(p, biExtraItems(hero));
 }
+
+
+
+
+
+static void putPanelGrids(Packet* p, void* player) {
+    putHeader(p, PKT_INV_RECTS);
+    const BYTE* table = common && readable((void*) (common + RVA_InvTable), 8) ? RDP(common, RVA_InvTable) : NULL;
+    if (!readable(table, BI_RECORDS * BI_RECORD_SIZE) || (int) RD32(common, RVA_InvCount) != BI_RECORDS) table = NULL;
+    putU8(p, table ? 9 : 0);
+    for (int row = BI_HIRES_FIRST + 5; table && row <= BI_HIRES_FIRST + 13; row++) {
+        const BYTE* r = table + row * BI_RECORD_SIZE;
+        putU8(p, (unsigned) (row - BI_HIRES_FIRST));
+        putU8(p, r[BIR_GRID_X]);
+        putU8(p, r[BIR_GRID_X + 1]);
+        putU8(p, r[BIR_BOX]);
+        putU8(p, r[BIR_BOX + 1]);
+        putU16(p, (unsigned) biRd32(r, BIR_GRID) & 0xFFFF);
+        putU16(p, (unsigned) biRd32(r, BIR_GRID + 8) & 0xFFFF);
+    }
+    int at = p->len, n = 0, guard = 0;
+    putU8(p, 0);
+    void* inventory = player ? RDP(player, U_INVENTORY) : NULL;
+    for (void* item = readable(inventory, 0x24) ? RDP(inventory, INV_FIRST) : NULL; item && guard < 512 && n < 255; guard++) {
+        void* data = RDP(item, U_DATA);
+        if (!readable(data, 0x70)) break;
+        int location = RD8(data, IDATA_LOCATION);
+        void* path = RDP(item, U_PATH);
+        BYTE* txt = (BYTE*) fGetItemText(RD32(item, U_TXTNO));
+        if (RD8(data, IDATA_NODEPAGE) == 1 && (location == 0 || location == 3 || location == 4) && readable(path, 0x14)
+            && readable(txt, 0x120)) {
+            int x0 = (int) RD32(path, IPATH_X), y0 = (int) RD32(path, IPATH_Y);
+            if (x0 >= 0 && y0 >= 0 && x0 < 16 && y0 < 16) {
+                putU8(p, (unsigned) location);
+                putU8(p, (unsigned) (x0 << 4 | y0));
+                putU8(p, (unsigned) ((txt[ITXT_WIDTH] & 15) << 4 | (txt[ITXT_HEIGHT] & 15)));
+                n++;
+            }
+        }
+        item = RDP(data, IDATA_NEXTINV);
+    }
+    p->data[at] = (BYTE) n;
+}

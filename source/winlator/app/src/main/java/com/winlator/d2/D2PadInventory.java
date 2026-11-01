@@ -23,28 +23,34 @@ final class D2PadInventory {
 
 
     static float[][] slots(boolean big, int gameWidth, int gameHeight) {
-        return slots(big, gameWidth, gameHeight, null);
+        return slots(big, gameWidth, gameHeight, null, null);
+    }
+
+
+    static final class Area {
+        final D2PanelGrids.Grid grid;
+        final java.util.List<int[]> items;
+
+        Area(D2PanelGrids.Grid grid, java.util.List<int[]> items) {
+            this.grid = grid;
+            this.items = items;
+        }
     }
 
 
 
-    static float[][] slots(boolean big, int gameWidth, int gameHeight, int[][] items) {
+    static float[][] slots(boolean big, int gameWidth, int gameHeight, java.util.List<int[]> items, java.util.List<Area> others) {
         float ox = (gameWidth - 800) / 2f + PANEL_X, oy = (gameHeight - 600) / 2f + PANEL_Y;
         int rows = big ? D2InventoryEdge.BIG_H : D2InventoryEdge.SMALL_H, top = big ? GRID_TOP_BIG : GRID_TOP_SMALL;
         int[][] boxes = big ? BOXES_BIG : BOXES_SMALL;
         float gx = ox + GRID_LEFT - 1, gy = oy + top - 1;
-        boolean[] covered = new boolean[COLS * rows];
         java.util.List<float[]> out = new java.util.ArrayList<>();
-        if (items != null) {
-            for (int[] it : items) {
-                if (it[0] + it[2] > COLS || it[1] + it[3] > rows || it[2] < 1 || it[3] < 1) continue;
-                for (int y = it[1]; y < it[1] + it[3]; y++) for (int x = it[0]; x < it[0] + it[2]; x++) covered[y * COLS + x] = true;
-                out.add(new float[]{gx + (it[0] + it[2] / 2f) * CELL, gy + (it[1] + it[3] / 2f) * CELL});
-            }
+        addGrid(out, gx, gy, CELL, CELL, COLS, rows, items);
+        if (others != null) {
+            float fx = (gameWidth - 800) / 2f, fy = (gameHeight - 600) / 2f;
+            for (Area a : others)
+                if (a.grid != null) addGrid(out, fx + a.grid.left - 1, fy + a.grid.top - 1, a.grid.cellW, a.grid.cellH, a.grid.cols, a.grid.rows, a.items);
         }
-        for (int r = 0; r < rows; r++)
-            for (int c = 0; c < COLS; c++)
-                if (!covered[r * COLS + c]) out.add(new float[]{gx + c * CELL + CELL / 2f, gy + r * CELL + CELL / 2f});
         for (int[] b : boxes) out.add(new float[]{ox + b[0] + b[2] / 2f, oy + b[1] + b[3] / 2f});
         float[][] slots = out.toArray(new float[0][]);
 
@@ -55,6 +61,22 @@ final class D2PadInventory {
         slots[0] = slots[first];
         slots[first] = t;
         return slots;
+    }
+
+
+    private static void addGrid(java.util.List<float[]> out, float gx, float gy, int cw, int ch, int cols, int rows,
+                                java.util.List<int[]> items) {
+        boolean[] covered = new boolean[cols * rows];
+        if (items != null) {
+            for (int[] it : items) {
+                if (it[0] + it[2] > cols || it[1] + it[3] > rows || it[2] < 1 || it[3] < 1) continue;
+                for (int y = it[1]; y < it[1] + it[3]; y++) for (int x = it[0]; x < it[0] + it[2]; x++) covered[y * cols + x] = true;
+                out.add(new float[]{gx + (it[0] + it[2] / 2f) * cw, gy + (it[1] + it[3] / 2f) * ch});
+            }
+        }
+        for (int r = 0; r < rows; r++)
+            for (int c = 0; c < cols; c++)
+                if (!covered[r * cols + c]) out.add(new float[]{gx + c * cw + cw / 2f, gy + r * ch + ch / 2f});
     }
 
 

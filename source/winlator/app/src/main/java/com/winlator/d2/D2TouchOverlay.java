@@ -8526,18 +8526,26 @@ public class D2TouchOverlay extends View {
 
     private boolean padInventorySnaps() {
         D2ModState s = mod;
-        return padInventoryNav && s != null && s.isOpen(D2ModState.UI_INVENTORY) && !pauseWanted && s.gameWidth > 0 && s.gameHeight > 0
+        return padInventoryNav && s != null && !pauseWanted
+            && (s.isOpen(D2ModState.UI_INVENTORY) || s.isOpen(D2ModState.UI_STASH) || s.isOpen(D2ModState.UI_CUBE) || s.isOpen(D2ModState.UI_NPCSHOP))
+            && s.gameWidth > 0 && s.gameHeight > 0
             && padPointerMode();
     }
 
 
     private void padInventoryStep(int dir) {
         D2ModState s = mod;
-        D2ModItems carried = modLink.items();
+        D2PanelGrids grids = modLink.panelGrids();
         D2Points points = modLink.points(2000);
-        boolean holding = points != null && points.cursorTaken;
-        int[][] items = carried != null && !holding ? carried.inventoryRects() : null;
-        float[][] slots = D2PadInventory.slots(D2Settings.bigInventory(getContext()), s.gameWidth, s.gameHeight, items);
+        boolean whole = grids != null && !(points != null && points.cursorTaken);
+        java.util.List<D2PadInventory.Area> others = new java.util.ArrayList<>();
+        if (grids != null && s.isOpen(D2ModState.UI_STASH))
+            others.add(new D2PadInventory.Area(grids.stash(), whole ? grids.itemsAt(D2PanelGrids.PLACE_STASH) : null));
+        if (grids != null && s.isOpen(D2ModState.UI_CUBE))
+            others.add(new D2PadInventory.Area(grids.grid(D2PanelGrids.ROW_CUBE), whole ? grids.itemsAt(D2PanelGrids.PLACE_CUBE) : null));
+        if (grids != null && s.isOpen(D2ModState.UI_NPCSHOP)) others.add(new D2PadInventory.Area(grids.shop(), null));
+        float[][] slots = D2PadInventory.slots(D2Settings.bigInventory(getContext()), s.gameWidth, s.gameHeight,
+            whole ? grids.itemsAt(D2PanelGrids.PLACE_INVENTORY) : null, others);
         float[] g = desktopToGame(xServer.pointer.getX(), xServer.pointer.getY(), s);
         float[] to = D2PadInventory.step(slots, g[0], g[1], dir);
         int[] p = gameToDesktop(to[0] - positionShiftX, to[1] - positionShiftY);

@@ -198,23 +198,6 @@ public final class D2ModItems {
     }
 
 
-    private int[][] inventoryRects;
-
-
-    void attachRects(byte[] packed) {
-        int[][] out = new int[packed.length / 2][];
-        for (int i = 0; i < out.length; i++) {
-            int at = packed[2 * i] & 0xFF, size = packed[2 * i + 1] & 0xFF;
-            out[i] = new int[]{at >> 4, at & 15, size >> 4, size & 15};
-        }
-        inventoryRects = out;
-    }
-
-
-    public int[][] inventoryRects() {
-        return inventoryRects;
-    }
-
     public int gridWidth() {
         return gridWidth;
     }

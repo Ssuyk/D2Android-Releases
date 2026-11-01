@@ -154,8 +154,7 @@ public final class D2ModLink {
     private byte[] gridMask;
     private int gridMaskSize;
     private long gridMaskAt;
-    private byte[] invRects;
-    private long invRectsAt;
+    private volatile Stamped<D2PanelGrids> panelGrids;
 
     private volatile long sharedGold = -1;
 
@@ -279,20 +278,15 @@ public final class D2ModLink {
                 gridMaskAt = SystemClock.uptimeMillis();
             }
         }
-        else if (type == D2ModState.PKT_INV_RECTS && length >= 9) {
-            int n = data[8] & 0xFF;
-            if (length >= 9 + 2 * n) {
-                invRects = java.util.Arrays.copyOfRange(data, 9, 9 + 2 * n);
-                invRectsAt = SystemClock.uptimeMillis();
-            }
+        else if (type == D2ModState.PKT_INV_RECTS) {
+            D2PanelGrids parsed = D2PanelGrids.parse(data, 8, length);
+            if (parsed != null) panelGrids = new Stamped<>(parsed, SystemClock.uptimeMillis());
         }
         else if (type == D2ModState.PKT_ITEMS) {
             D2ModItems parsed = D2ModItems.parse(data, length);
 
             if (parsed != null && gridMask != null && SystemClock.uptimeMillis() - gridMaskAt < 1000)
                 parsed.attachGrid(gridMaskSize >> 8, gridMaskSize & 0xFF, gridMask);
-            if (parsed != null && invRects != null && SystemClock.uptimeMillis() - invRectsAt < 1000) parsed.attachRects(invRects);
-            invRects = null;
             gridMask = null;
             if (parsed != null) items = new Stamped<>(parsed, SystemClock.uptimeMillis());
         }
@@ -736,6 +730,11 @@ public final class D2ModLink {
 
     public D2ModItems items() {
         return Stamped.fresh(items, 2500);
+    }
+
+
+    public D2PanelGrids panelGrids() {
+        return Stamped.fresh(panelGrids, 2500);
     }
 
 
