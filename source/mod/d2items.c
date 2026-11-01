@@ -35,6 +35,7 @@
 #define INV_MAX_H 8
 #define INV_MAX_CELLS (INV_MAX_W * INV_MAX_H)
 #define PKT_GRID 17
+#define PKT_INV_RECTS 18
 
 static int invGridW = INV_W, invGridH = INV_H;
 
@@ -168,6 +169,8 @@ typedef struct {
     BYTE belt[3], inventory[3];
     BYTE tpTome, tpScrolls, idTome, idScrolls;
     BYTE used[INV_MAX_CELLS / 8];
+    BYTE rects;
+    BYTE rect[INV_MAX_CELLS][2];
 } Carried;
 
 static void readCarried(void* player, Carried* c) {
@@ -197,6 +200,10 @@ static void readCarried(void* player, Carried* c) {
             BYTE* txt = (BYTE*) fGetItemText(RD32(item, U_TXTNO));
             if (readable(path, 0x14) && readable(txt, 0x120)) {
                 int x0 = (int) RD32(path, IPATH_X), y0 = (int) RD32(path, IPATH_Y);
+                if (c->rects < INV_MAX_CELLS && x0 >= 0 && y0 >= 0 && x0 < 16 && y0 < 16) {
+                    c->rect[c->rects][0] = (BYTE) (x0 << 4 | y0);
+                    c->rect[c->rects++][1] = (BYTE) ((txt[ITXT_WIDTH] & 15) << 4 | (txt[ITXT_HEIGHT] & 15));
+                }
                 for (int y = y0; y < y0 + txt[ITXT_HEIGHT] && y < invGridH; y++) {
                     for (int x = x0; x < x0 + txt[ITXT_WIDTH] && x < invGridW; x++) {
                         if (x >= 0 && y >= 0) c->used[(y * invGridW + x) / 8] |= (BYTE) (1 << ((y * invGridW + x) % 8));
@@ -249,6 +256,13 @@ static void sendItems(void* player, void** units, int count) {
         for (int i = 0; i < bytes; i++) putU8(&p, c.used[i]);
         sendPacket(&p);
     }
+    putHeader(&p, PKT_INV_RECTS);
+    putU8(&p, c.rects);
+    for (int i = 0; i < c.rects; i++) {
+        putU8(&p, c.rect[i][0]);
+        putU8(&p, c.rect[i][1]);
+    }
+    sendPacket(&p);
     putHeader(&p, PKT_ITEMS);
     putU8(&p, (itemNameAvailable ? 1 : 0) | (beltMoveAvailable ? 2 : 0) | (labelFilterAvailable ? 4 : 0)
         | (newLootVisible(now) ? 8 : 0) | (takeAvailable ? 16 : 0) | (shopAvailable ? 32 : 0) | (sellAvailable ? 64 : 0) | (stackMax(0) ? 128 : 0));

@@ -8533,7 +8533,11 @@ public class D2TouchOverlay extends View {
 
     private void padInventoryStep(int dir) {
         D2ModState s = mod;
-        float[][] slots = D2PadInventory.slots(D2Settings.bigInventory(getContext()), s.gameWidth, s.gameHeight);
+        D2ModItems carried = modLink.items();
+        D2Points points = modLink.points(2000);
+        boolean holding = points != null && points.cursorTaken;
+        int[][] items = carried != null && !holding ? carried.inventoryRects() : null;
+        float[][] slots = D2PadInventory.slots(D2Settings.bigInventory(getContext()), s.gameWidth, s.gameHeight, items);
         float[] g = desktopToGame(xServer.pointer.getX(), xServer.pointer.getY(), s);
         float[] to = D2PadInventory.step(slots, g[0], g[1], dir);
         int[] p = gameToDesktop(to[0] - positionShiftX, to[1] - positionShiftY);
