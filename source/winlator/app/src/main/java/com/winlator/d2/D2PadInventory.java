@@ -9,6 +9,7 @@ final class D2PadInventory {
     static final int LEFT = 0, RIGHT = 1, DOWN = 2, UP = 3;
 
     private static final int PANEL_X = 400, PANEL_Y = 60, CELL = 29, COLS = 10, GRID_LEFT = 19;
+    private static final int FREE_STEP = 15;
     private static final int GRID_TOP_SMALL = 255, GRID_TOP_BIG = 145;
 
 
@@ -51,7 +52,7 @@ final class D2PadInventory {
             for (Area a : others)
                 if (a.grid != null) addGrid(out, fx + a.grid.left - 1, fy + a.grid.top - 1, a.grid.cellW, a.grid.cellH, a.grid.cols, a.grid.rows, a.items);
         }
-        for (int[] b : boxes) out.add(new float[]{ox + b[0] + b[2] / 2f, oy + b[1] + b[3] / 2f});
+        for (int[] b : boxes) out.add(new float[]{ox + b[0] + b[2] / 2f, oy + b[1] + b[3] / 2f, b[2] / 2f, b[3] / 2f});
         float[][] slots = out.toArray(new float[0][]);
 
         int first = 0;
@@ -71,35 +72,32 @@ final class D2PadInventory {
             for (int[] it : items) {
                 if (it[0] + it[2] > cols || it[1] + it[3] > rows || it[2] < 1 || it[3] < 1) continue;
                 for (int y = it[1]; y < it[1] + it[3]; y++) for (int x = it[0]; x < it[0] + it[2]; x++) covered[y * cols + x] = true;
-                out.add(new float[]{gx + (it[0] + it[2] / 2f) * cw, gy + (it[1] + it[3] / 2f) * ch});
+                out.add(new float[]{gx + (it[0] + it[2] / 2f) * cw, gy + (it[1] + it[3] / 2f) * ch, it[2] * cw / 2f, it[3] * ch / 2f});
             }
         }
         for (int r = 0; r < rows; r++)
             for (int c = 0; c < cols; c++)
-                if (!covered[r * cols + c]) out.add(new float[]{gx + c * cw + cw / 2f, gy + r * ch + ch / 2f});
+                if (!covered[r * cols + c]) out.add(new float[]{gx + c * cw + cw / 2f, gy + r * ch + ch / 2f, cw / 2f, ch / 2f});
     }
 
 
     static int nearest(float[][] slots, float x, float y) {
-        int best = -1;
-        double bestD = Double.MAX_VALUE;
-        for (int i = 0; i < slots.length; i++) {
-            double d = Math.hypot(slots[i][0] - x, slots[i][1] - y);
-            if (d < bestD) {
-                bestD = d;
-                best = i;
-            }
-        }
-        return bestD <= CELL ? best : -1;
+        for (int i = 0; i < slots.length; i++)
+            if (Math.abs(slots[i][0] - x) < slots[i][2] && Math.abs(slots[i][1] - y) < slots[i][3]) return i;
+        return -1;
     }
+
+
+
+
 
 
 
     static float[] step(float[][] slots, float x, float y, int dir) {
         int from = nearest(slots, x, y);
-        if (from < 0) return slots[0];
-        float fx = slots[from][0], fy = slots[from][1];
+        float fx = from >= 0 ? slots[from][0] : x, fy = from >= 0 ? slots[from][1] : y;
         float ux = dir == LEFT ? -1 : dir == RIGHT ? 1 : 0, uy = dir == UP ? -1 : dir == DOWN ? 1 : 0;
+        float half = from < 0 ? 0 : ux != 0 ? slots[from][3] : slots[from][2];
         float[] best = null;
         double bestScore = Double.MAX_VALUE;
         for (int i = 0; i < slots.length; i++) {
@@ -107,12 +105,17 @@ final class D2PadInventory {
             float dx = slots[i][0] - fx, dy = slots[i][1] - fy;
             double along = dx * ux + dy * uy, across = Math.abs(dx * uy - dy * ux);
             if (along < 4) continue;
-            double score = along + 2 * across;
+            double gap = Math.max(0, across - half - (ux != 0 ? slots[i][3] : slots[i][2]));
+            if (gap > along) continue;
+            double score = along + 3 * gap;
             if (score < bestScore) {
                 bestScore = score;
                 best = slots[i];
             }
         }
-        return best != null ? best : slots[from];
+        if (best != null) return best;
+
+        float out = (from < 0 ? 0 : ux != 0 ? slots[from][2] : slots[from][3]) + FREE_STEP;
+        return new float[]{fx + ux * out, fy + uy * out};
     }
 }
