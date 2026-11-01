@@ -8560,7 +8560,8 @@ public class D2TouchOverlay extends View {
 
     private boolean padStashButton(int button) {
         D2ModState s = mod;
-        if (!padInventorySnaps()) return false;
+        // Not tied to the D-pad setting: in these windows Y, LB and RB always take these roles over their own actions.
+        if (s == null || pauseWanted || editMode || s.gameWidth <= 0 || s.gameHeight <= 0 || !padPointerMode()) return false;
         if (s.isOpen(D2ModState.UI_NPCSHOP) && (button == D2Gamepad.LB || button == D2Gamepad.RB)) {
             padShopTab(s, button == D2Gamepad.LB ? -1 : 1);
             return true;
@@ -8573,9 +8574,11 @@ public class D2TouchOverlay extends View {
             if (movable) moveItem(s);
             return true;
         }
-        if ((button == D2Gamepad.LB || button == D2Gamepad.RB) && D2Settings.plugy(getContext())) {
-            D2Trace.log("pad " + (button == D2Gamepad.LB ? "LB" : "RB") + " with the stash open: stash page");
-            modLink.plugy(button == D2Gamepad.LB ? D2ModLink.PLUGY_PAGE_PREVIOUS : D2ModLink.PLUGY_PAGE_NEXT);
+        if (button == D2Gamepad.LB || button == D2Gamepad.RB) {
+            boolean pages = D2Settings.plugy(getContext());
+            D2Trace.log("pad " + (button == D2Gamepad.LB ? "LB" : "RB") + " with the stash open: "
+                + (pages ? "stash page" : "nothing, no PlugY pages"));
+            if (pages) modLink.plugy(button == D2Gamepad.LB ? D2ModLink.PLUGY_PAGE_PREVIOUS : D2ModLink.PLUGY_PAGE_NEXT);
             return true;
         }
         return false;
