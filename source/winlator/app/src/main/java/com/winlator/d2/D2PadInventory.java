@@ -15,6 +15,24 @@ final class D2PadInventory {
 
     private static final float[][] SWAP_TABS_BIG = {{20.9f, 12.7f, 16, 10}, {56.9f, 12.7f, 16, 10}, {267.3f, 12.7f, 16, 10}, {301.7f, 12.7f, 16, 10}};
 
+    static final int SHOP_TABS = 4;
+
+
+    static float[] shopTab(int gameWidth, int gameHeight, int tab) {
+        float[] b = SHOP_BUTTONS[tab];
+        return new float[]{(gameWidth - 800) / 2f + b[0], (gameHeight - 600) / 2f + b[1]};
+    }
+
+
+    static int shopTabAt(int gameWidth, int gameHeight, float x, float y) {
+        for (int i = 0; i < SHOP_TABS; i++) {
+            float[] c = shopTab(gameWidth, gameHeight, i);
+            if (Math.abs(x - c[0]) <= SHOP_BUTTONS[i][2] && Math.abs(y - c[1]) <= SHOP_BUTTONS[i][3]) return i;
+        }
+        return -1;
+    }
+
+
     private static final float[][] SHOP_BUTTONS = {
         {120.5f, 74.4f, 36, 11}, {202.7f, 74.4f, 36, 11}, {282, 74.4f, 36, 11}, {361.8f, 74.4f, 36, 11},
         {212.6f, 461.5f, 16, 16}, {265, 461.5f, 16, 16}, {317.5f, 461.5f, 16, 16}, {369.4f, 461.5f, 16, 16},

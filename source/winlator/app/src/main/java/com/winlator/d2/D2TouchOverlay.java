@@ -5480,6 +5480,7 @@ public class D2TouchOverlay extends View {
         D2ModState s = modLink.state();
         boolean had = mod != null;
         mod = s;
+        shopTabTrack(s);
 
         if (uiFactor > 1f && s != null && s.gameWidth > 0 && s.gameHeight > 0 && getWidth() > 0 && !editMode
             && (s.gameWidth != clearedGameW || s.gameHeight != clearedGameH)) layoutButtons(getWidth(), getHeight());
@@ -8149,6 +8150,9 @@ public class D2TouchOverlay extends View {
             // A click off the wares may change the tab: the wares to stop at are known again once one is under the pointer.
             D2PanelGrids grids = modLink.panelGrids();
             if (grids == null || grids.hoveredWareKey < 0) shopWareKey = -1;
+            float[] g = desktopToGame(xServer.pointer.getX(), xServer.pointer.getY(), s);
+            int tab = D2PadInventory.shopTabAt(s.gameWidth, s.gameHeight, g[0], g[1]);
+            if (tab >= 0) shopTab = tab;
         }
         if (click == D2Gamepad.CLICK_LEFT && s != null && s.npcTalking) {
             pressKey(VK_ESCAPE);
@@ -8556,7 +8560,12 @@ public class D2TouchOverlay extends View {
 
     private boolean padStashButton(int button) {
         D2ModState s = mod;
-        if (!padInventorySnaps() || !s.isOpen(D2ModState.UI_STASH)) return false;
+        if (!padInventorySnaps()) return false;
+        if (s.isOpen(D2ModState.UI_NPCSHOP) && (button == D2Gamepad.LB || button == D2Gamepad.RB)) {
+            padShopTab(s, button == D2Gamepad.LB ? -1 : 1);
+            return true;
+        }
+        if (!s.isOpen(D2ModState.UI_STASH)) return false;
         if (button == D2Gamepad.Y) {
             boolean movable = (s.hoverItemPlace == D2ItemMoves.PLACE_INVENTORY || s.hoverItemPlace == D2ItemMoves.PLACE_STASH)
                 && s.hoverItemX >= 0 && s.hoverItemY >= 0 && s.hoverItemCategory != D2ModItems.CAT_QUEST;
@@ -8574,6 +8583,32 @@ public class D2TouchOverlay extends View {
 
 
     private int shopWareKey = -1;
+
+    // The merchant's tab as the app last chose it; the game opens the shop on the leftmost tab.
+    private int shopTab;
+    private boolean shopWasOpen;
+
+
+    private void padShopTab(D2ModState s, int by) {
+        shopTab = Math.floorMod(shopTab + by, D2PadInventory.SHOP_TABS);
+        float[] tab = D2PadInventory.shopTab(s.gameWidth, s.gameHeight, shopTab);
+        int[] p = gameToDesktop(tab[0] - positionShiftX, tab[1] - positionShiftY);
+        int backX = xServer.pointer.getX(), backY = xServer.pointer.getY();
+        D2Trace.log("pad " + (by < 0 ? "LB" : "RB") + " at the merchant: tab " + shopTab + " at " + p[0] + "," + p[1]);
+        shopWareKey = -1;
+        enqueue(moveTo(p[0], p[1]), settle(HOVER_SETTLE_MS));
+        setLmb(true);
+        enqueue(waitMs(50));
+        setLmb(false);
+        enqueue(waitMs(50), moveTo(backX, backY));
+    }
+
+
+    private void shopTabTrack(D2ModState s) {
+        boolean open = s != null && s.isOpen(D2ModState.UI_NPCSHOP);
+        if (open && !shopWasOpen) shopTab = 0;
+        shopWasOpen = open;
+    }
 
 
     private void padInventoryStep(int dir) {
