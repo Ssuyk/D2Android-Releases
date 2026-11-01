@@ -63,7 +63,7 @@ final class D2InfoLayer {
                 stretch(l, BUTTON_BOX, 4, left, top, right - left, bottom - top, art.colour(0x000000));
             }
             else D2MaterialsLayer.box(l, art, left, top, right - left, bottom - top, 0x000000);
-            float in = 4, halfW = (right - left - 2 * in) / 2, rowH = (bottom - top - 2 * in) / 2;
+            float in = 4, halfW = (right - left - 2 * in) / 2, rowH = (bottom - top - 2 * in - D2InfoGrid.STAMINA_HEIGHT) / 2;
             for (int i = 0; i < D2InfoGrid.SLOTS; i++) {
                 String t = st.gridText[i];
                 if (t == null || t.isEmpty()) continue;

@@ -19,6 +19,7 @@
 #define PT_UI_SHOP     0x0C
 #define PT_UI_STASH    0x19
 #define PT_UI_CUBE     0x1A
+#define PT_UI_INVENTORY 0x01
 #define PT_DETAILS     1
 #define IDATA_ITEMLEVEL 0x2C
 #define ITXT_NORMCODE  0x84
@@ -213,7 +214,8 @@ static void sendPlaytest(void* player, void* act, DWORD levelNo) {
     DWORD now = GetTickCount();
 
 
-    if ((int) (now - playtestUntil) >= 0 && !getUiVar(PT_UI_SHOP) && !getUiVar(PT_UI_STASH) && !getUiVar(PT_UI_CUBE))
+    if ((int) (now - playtestUntil) >= 0 && !getUiVar(PT_UI_SHOP) && !getUiVar(PT_UI_STASH) && !getUiVar(PT_UI_CUBE)
+        && !getUiVar(PT_UI_INVENTORY))
         return;
 
     Packet p;

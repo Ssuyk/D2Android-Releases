@@ -246,7 +246,7 @@ public final class D2InfoStrip {
                 canvas.drawRect(plate, fill);
                 if (hud.hasFrame()) hud.drawFrame(canvas, plate, scale, FILL);
             }
-            float in = 4 * scale, halfW = (plate.width() - 2 * in) / 2, rowH = (plate.height() - 2 * in) / 2;
+            float in = 4 * scale, halfW = (plate.width() - 2 * in) / 2, rowH = (plate.height() - 2 * in - D2InfoGrid.STAMINA_HEIGHT * scale) / 2;
             for (int i = 0; i < D2InfoGrid.SLOTS; i++) {
                 String t = gridEntry(slots[i], wall, mono);
                 if (t.isEmpty()) continue;

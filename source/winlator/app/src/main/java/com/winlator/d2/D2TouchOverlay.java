@@ -8602,7 +8602,12 @@ public class D2TouchOverlay extends View {
         com.winlator.d2.test.Zustand.Figur.Teil item = inventoryShown && s.hoverItemX >= 0 && s.hoverItemY >= 0
             ? D2ItemMoves.itemAt(f, s.hoverItemPlace, s.hoverItemX, s.hoverItemY) : null;
         D2Points points = modLink.points(2000);
-        if (item == null || item.identifiziert() || (points != null && points.cursorTaken)) return false;
+        if (item == null || item.identifiziert() || (points != null && points.cursorTaken)) {
+            if (inventoryShown) D2Trace.log("pad Y: no identify, " + (f == null ? "no item list" : item == null
+                ? "no item at place " + s.hoverItemPlace + " cell " + s.hoverItemX + "," + s.hoverItemY
+                : item.identifiziert() ? item.code + " already identified" : "an item on the cursor"));
+            return false;
+        }
         D2ModItems carried = modLink.items();
         com.winlator.d2.test.Zustand.Figur.Teil tool = null;
         for (com.winlator.d2.test.Zustand.Figur.Teil t : f.gegenstaende) {

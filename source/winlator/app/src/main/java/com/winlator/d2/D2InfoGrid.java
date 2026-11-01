@@ -24,7 +24,7 @@ final class D2InfoGrid {
 
 
 
-    static final int LEFT = -146, RIGHT = -23, TOP = 39, BOTTOM = 6;
+    static final int LEFT = -146, RIGHT = -23, TOP = 42, BOTTOM = 6;
 
     static final int STONE_TOP = 45;
 
@@ -104,7 +104,7 @@ final class D2InfoGrid {
 
 
     // The grid covers the game's stamina bar, so it carries its own along its bottom edge.
-    static final int STAMINA_IN = 5, STAMINA_BOTTOM = 3, STAMINA_HEIGHT = 2;
+    static final int STAMINA_IN = 5, STAMINA_BOTTOM = 3, STAMINA_HEIGHT = 3;
     static final int STAMINA_RGB = 0xC8A040, STAMINA_LOW_RGB = 0xB02020;
 
 
