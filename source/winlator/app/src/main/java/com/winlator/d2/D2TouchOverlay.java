@@ -8545,7 +8545,7 @@ public class D2TouchOverlay extends View {
             others.add(new D2PadInventory.Area(grids.grid(D2PanelGrids.ROW_CUBE), whole ? grids.itemsAt(D2PanelGrids.PLACE_CUBE) : null));
         if (grids != null && s.isOpen(D2ModState.UI_NPCSHOP)) others.add(new D2PadInventory.Area(grids.shop(), null));
         float[][] slots = D2PadInventory.slots(D2Settings.bigInventory(getContext()), s.gameWidth, s.gameHeight,
-            whole ? grids.itemsAt(D2PanelGrids.PLACE_INVENTORY) : null, others);
+            whole ? grids.itemsAt(D2PanelGrids.PLACE_INVENTORY) : null, others, s.isOpen(D2ModState.UI_NPCSHOP));
         float[] g = desktopToGame(xServer.pointer.getX(), xServer.pointer.getY(), s);
         float[] to = D2PadInventory.step(slots, g[0], g[1], dir);
         int[] p = gameToDesktop(to[0] - positionShiftX, to[1] - positionShiftY);

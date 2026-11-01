@@ -10,6 +10,12 @@ final class D2PadInventory {
 
     private static final int PANEL_X = 400, PANEL_Y = 60, CELL = 29, COLS = 10, GRID_LEFT = 19;
     private static final int FREE_STEP = 15;
+
+
+    private static final float[][] SHOP_BUTTONS = {
+        {120.5f, 74.4f, 36, 11}, {202.7f, 74.4f, 36, 11}, {282, 74.4f, 36, 11}, {361.8f, 74.4f, 36, 11},
+        {212.6f, 461.5f, 16, 16}, {265, 461.5f, 16, 16}, {317.5f, 461.5f, 16, 16}, {369.4f, 461.5f, 16, 16},
+    };
     private static final int GRID_TOP_SMALL = 255, GRID_TOP_BIG = 145;
 
 
@@ -24,7 +30,7 @@ final class D2PadInventory {
 
 
     static float[][] slots(boolean big, int gameWidth, int gameHeight) {
-        return slots(big, gameWidth, gameHeight, null, null);
+        return slots(big, gameWidth, gameHeight, null, null, false);
     }
 
 
@@ -40,7 +46,8 @@ final class D2PadInventory {
 
 
 
-    static float[][] slots(boolean big, int gameWidth, int gameHeight, java.util.List<int[]> items, java.util.List<Area> others) {
+    static float[][] slots(boolean big, int gameWidth, int gameHeight, java.util.List<int[]> items, java.util.List<Area> others,
+                           boolean shop) {
         float ox = (gameWidth - 800) / 2f + PANEL_X, oy = (gameHeight - 600) / 2f + PANEL_Y;
         int rows = big ? D2InventoryEdge.BIG_H : D2InventoryEdge.SMALL_H, top = big ? GRID_TOP_BIG : GRID_TOP_SMALL;
         int[][] boxes = big ? BOXES_BIG : BOXES_SMALL;
@@ -51,6 +58,10 @@ final class D2PadInventory {
             float fx = (gameWidth - 800) / 2f, fy = (gameHeight - 600) / 2f;
             for (Area a : others)
                 if (a.grid != null) addGrid(out, fx + a.grid.left - 1, fy + a.grid.top - 1, a.grid.cellW, a.grid.cellH, a.grid.cols, a.grid.rows, a.items);
+        }
+        if (shop) {
+            float fx = (gameWidth - 800) / 2f, fy = (gameHeight - 600) / 2f;
+            for (float[] b : SHOP_BUTTONS) out.add(new float[]{fx + b[0], fy + b[1], b[2], b[3]});
         }
         for (int[] b : boxes) out.add(new float[]{ox + b[0] + b[2] / 2f, oy + b[1] + b[3] / 2f, b[2] / 2f, b[3] / 2f});
         float[][] slots = out.toArray(new float[0][]);
