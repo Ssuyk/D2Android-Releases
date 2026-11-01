@@ -7733,6 +7733,14 @@ public class D2TouchOverlay extends View {
             padClick(owner, click);
             return;
         }
+        if (down && padStashButton(button)) {
+            padStashSwallow[button] = true;
+            return;
+        }
+        if (!down && padStashSwallow[button]) {
+            padStashSwallow[button] = false;
+            return;
+        }
         if (!down && owner == padRingOwner) {
             padTakeRelease(owner);
             return;
@@ -8530,6 +8538,28 @@ public class D2TouchOverlay extends View {
             && (s.isOpen(D2ModState.UI_INVENTORY) || s.isOpen(D2ModState.UI_STASH) || s.isOpen(D2ModState.UI_CUBE) || s.isOpen(D2ModState.UI_NPCSHOP))
             && s.gameWidth > 0 && s.gameHeight > 0
             && padPointerMode();
+    }
+
+
+    private final boolean[] padStashSwallow = new boolean[D2Gamepad.COUNT];
+
+
+    private boolean padStashButton(int button) {
+        D2ModState s = mod;
+        if (!padInventorySnaps() || !s.isOpen(D2ModState.UI_STASH)) return false;
+        if (button == D2Gamepad.Y) {
+            boolean movable = (s.hoverItemPlace == D2ItemMoves.PLACE_INVENTORY || s.hoverItemPlace == D2ItemMoves.PLACE_STASH)
+                && s.hoverItemX >= 0 && s.hoverItemY >= 0 && s.hoverItemCategory != D2ModItems.CAT_QUEST;
+            D2Trace.log("pad Y with the stash open: " + (movable ? "move the item" : "no movable item under the pointer"));
+            if (movable) moveItem(s);
+            return true;
+        }
+        if ((button == D2Gamepad.LB || button == D2Gamepad.RB) && D2Settings.plugy(getContext())) {
+            D2Trace.log("pad " + (button == D2Gamepad.LB ? "LB" : "RB") + " with the stash open: stash page");
+            modLink.plugy(button == D2Gamepad.LB ? D2ModLink.PLUGY_PAGE_PREVIOUS : D2ModLink.PLUGY_PAGE_NEXT);
+            return true;
+        }
+        return false;
     }
 
 
