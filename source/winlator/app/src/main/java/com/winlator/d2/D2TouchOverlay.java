@@ -8541,6 +8541,11 @@ public class D2TouchOverlay extends View {
     }
 
 
+    boolean padBeltRepeats() {
+        return !editMode && !padRingOpen() && !padEscMenuOpen() && padInventorySnaps();
+    }
+
+
     private final boolean[] padStashSwallow = new boolean[D2Gamepad.COUNT];
 
 

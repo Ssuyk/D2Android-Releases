@@ -190,7 +190,13 @@ final class D2GamepadInput {
         }
         int row = D2Gamepad.beltRow(button);
         if (row >= 0) {
-            if (pressed) overlay.padBelt(row, down[D2Gamepad.LT]);
+            handler.removeCallbacks(beltRepeat);
+            if (pressed) {
+                overlay.padBelt(row, down[D2Gamepad.LT]);
+                repeatButton = button;
+                repeatRow = row;
+                if (overlay.padBeltRepeats()) handler.postDelayed(beltRepeat, REPEAT_FIRST_MS);
+            }
             return;
         }
         if (D2Gamepad.hasLongPress(button)) {
@@ -204,6 +210,20 @@ final class D2GamepadInput {
         }
         overlay.padButton(button, overlay.padAction(button, pressedInLayer2[button]), pressed);
     }
+
+
+    private static final int REPEAT_FIRST_MS = 350, REPEAT_NEXT_MS = 120;
+    private int repeatButton = -1, repeatRow;
+
+
+    private final Runnable beltRepeat = new Runnable() {
+        @Override
+        public void run() {
+            if (repeatButton < 0 || !down[repeatButton] || !overlay.padBeltRepeats()) return;
+            overlay.padBelt(repeatRow, down[D2Gamepad.LT]);
+            handler.postDelayed(this, REPEAT_NEXT_MS);
+        }
+    };
 
 
     private final boolean[] deferredBox = new boolean[D2Gamepad.COUNT];
