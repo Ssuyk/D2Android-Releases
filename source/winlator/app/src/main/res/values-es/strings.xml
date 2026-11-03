@@ -1679,6 +1679,7 @@
     <string name="settings_saves_save_as">Guardar como</string>
     <string name="pad_identify_hint">Pulsa %1$s para identificar</string>
     <string name="pad_name_triangle">Triángulo</string>
+    <string name="pad_name_cross">Equis</string>
     <string name="settings_section_tasten">Botones del mando</string>
     <string name="helper_padStyle_label">Estilo de botones en las ayudas</string>
     <string name="helper_padStyle_info">Qué nombres y símbolos de botones muestran las ayudas. Automático los elige según el mando conectado.</string>
@@ -1691,14 +1692,14 @@
     <string name="helper_targetPriority_opt0">El más cercano (un monstruo pegado a ti sigue yendo primero)</string>
     <string name="helper_targetPriority_opt1">Monstruo primero</string>
     <string name="helper_targetPriority_opt2">Objeto primero</string>
-    <string name="btn_priority_closest">A: Cerca</string>
-    <string name="btn_priority_item">A: Objeto</string>
-    <string name="btn_priority_monster">A: Mob</string>
+    <string name="btn_priority_closest">Objetivo: Cerca</string>
+    <string name="btn_priority_item">Objetivo: Objeto</string>
+    <string name="btn_priority_monster">Objetivo: Mob</string>
     <string name="helper_pin_priority">Prioridad de A</string>
-    <string name="note_priority">A va a: %1$s</string>
+    <string name="note_priority">%1$s va a: %2$s</string>
     <string name="pad_action_belt">Cinturón, columna %1$d (con LT: al mercenario)</string>
     <string name="pad_action_character">Personaje</string>
-    <string name="pad_action_priority">Cambiar A: monstruo / objeto / más cercano</string>
+    <string name="pad_action_priority">Prioridad de %1$s: monstruo / objeto / más cercano</string>
     <string name="pad_action_quests">Misiones</string>
     <string name="pad_action_skill_tree">Árbol de habilidades</string>
     <string name="priority_closest">El más cercano</string>

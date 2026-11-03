@@ -1673,6 +1673,7 @@
     <string name="settings_saves_save_as">Spielstände speichern</string>
     <string name="pad_identify_hint">%1$s drücken zum Identifizieren</string>
     <string name="pad_name_triangle">Dreieck</string>
+    <string name="pad_name_cross">Kreuz</string>
     <string name="settings_section_tasten">Controller-Tasten</string>
     <string name="helper_padStyle_label">Tastenstil in Hinweisen</string>
     <string name="helper_padStyle_info">Welche Tastennamen und Symbole die Hinweise zeigen. Automatisch wählt sie nach dem verbundenen Controller.</string>
@@ -1685,14 +1686,14 @@
     <string name="helper_targetPriority_opt0">Das Nächste (ein Monster direkt neben dir geht trotzdem vor)</string>
     <string name="helper_targetPriority_opt1">Monster zuerst</string>
     <string name="helper_targetPriority_opt2">Gegenstand zuerst</string>
-    <string name="btn_priority_closest">A: Nah</string>
-    <string name="btn_priority_item">A: Ding</string>
-    <string name="btn_priority_monster">A: Mob</string>
+    <string name="btn_priority_closest">Ziel: Nah</string>
+    <string name="btn_priority_item">Ziel: Ding</string>
+    <string name="btn_priority_monster">Ziel: Mob</string>
     <string name="helper_pin_priority">A-Vorrang</string>
-    <string name="note_priority">A geht auf: %1$s</string>
+    <string name="note_priority">%1$s geht auf: %2$s</string>
     <string name="pad_action_belt">Gürtel, Spalte %1$d (mit LT: an den Söldner)</string>
     <string name="pad_action_character">Charakter</string>
-    <string name="pad_action_priority">A umschalten: Monster / Gegenstand / Nächstes</string>
+    <string name="pad_action_priority">Vorrang von %1$s: Monster / Gegenstand / Nächstes</string>
     <string name="pad_action_quests">Quests</string>
     <string name="pad_action_skill_tree">Fertigkeitenbaum</string>
     <string name="priority_closest">Das Nächste</string>

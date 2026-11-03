@@ -1677,6 +1677,7 @@
     <string name="settings_saves_save_as">Save to a file</string>
     <string name="pad_identify_hint">Press %1$s to identify</string>
     <string name="pad_name_triangle">Triangle</string>
+    <string name="pad_name_cross">Cross</string>
     <string name="settings_section_tasten">Controller buttons</string>
     <string name="helper_padStyle_label">Button style in hints</string>
     <string name="helper_padStyle_info">Which button names and symbols the hints show. Automatic picks them from the connected controller.</string>
@@ -1689,14 +1690,14 @@
     <string name="helper_targetPriority_opt0">Closest (a monster right next to you still comes first)</string>
     <string name="helper_targetPriority_opt1">Monster first</string>
     <string name="helper_targetPriority_opt2">Item first</string>
-    <string name="btn_priority_closest">A: Near</string>
-    <string name="btn_priority_item">A: Item</string>
-    <string name="btn_priority_monster">A: Mob</string>
+    <string name="btn_priority_closest">Target: Near</string>
+    <string name="btn_priority_item">Target: Item</string>
+    <string name="btn_priority_monster">Target: Mob</string>
     <string name="helper_pin_priority">A priority</string>
-    <string name="note_priority">A goes for: %1$s</string>
+    <string name="note_priority">%1$s goes for: %2$s</string>
     <string name="pad_action_belt">Belt column %1$d (with LT: to the mercenary)</string>
     <string name="pad_action_character">Character</string>
-    <string name="pad_action_priority">Switch A: monster / item / closest</string>
+    <string name="pad_action_priority">Priority of %1$s: monster / item / closest</string>
     <string name="pad_action_quests">Quests</string>
     <string name="pad_action_skill_tree">Skill tree</string>
     <string name="priority_closest">Closest</string>

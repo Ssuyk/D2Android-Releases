@@ -9015,7 +9015,7 @@ public class D2TouchOverlay extends View {
         D2Settings.putInt(getContext(), "targetPriority", next);
         Button b = gameButton("menu_prio");
         if (b != null) b.label = priorityLabel(next);
-        showNote(text(R.string.note_priority, priorityName(next)));
+        showNote(text(R.string.note_priority, D2PadStyle.bottomName(getContext(), D2PadStyle.current(getContext())), priorityName(next)));
         D2Trace.log("pad: A priority " + next);
         invalidate();
     }
@@ -9050,7 +9050,7 @@ public class D2TouchOverlay extends View {
             case D2TriggerAction.QUESTS: return text(R.string.pad_action_quests);
             case D2TriggerAction.CHARACTER: return text(R.string.pad_action_character);
             case D2TriggerAction.SKILL_TREE: return text(R.string.pad_action_skill_tree);
-            case D2TriggerAction.PRIORITY: return text(R.string.pad_action_priority);
+            case D2TriggerAction.PRIORITY: return text(R.string.pad_action_priority, D2PadStyle.bottomName(getContext(), D2PadStyle.current(getContext())));
             case D2TriggerAction.NOTHING: return text(R.string.pad_action_nothing);
             default:
                 if (D2TriggerAction.isBelt(act)) return text(R.string.pad_action_belt, act - D2TriggerAction.BELT_1 + 1);

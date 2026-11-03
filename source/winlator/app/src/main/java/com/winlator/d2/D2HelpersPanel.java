@@ -1215,6 +1215,9 @@ public final class D2HelpersPanel {
 
 
     private static String padActionName(Context context, int action) {
+        if (action == D2TriggerAction.PRIORITY) {
+            return D2Text.get(context, com.winlator.R.string.pad_action_priority, D2PadStyle.bottomName(context, D2PadStyle.current(context)));
+        }
         if (D2TriggerAction.isBelt(action)) {
             return D2Text.get(context, com.winlator.R.string.pad_action_belt, action - D2TriggerAction.BELT_1 + 1);
         }
@@ -1240,7 +1243,6 @@ public final class D2HelpersPanel {
             case D2TriggerAction.QUESTS: id = com.winlator.R.string.pad_action_quests; break;
             case D2TriggerAction.CHARACTER: id = com.winlator.R.string.pad_action_character; break;
             case D2TriggerAction.SKILL_TREE: id = com.winlator.R.string.pad_action_skill_tree; break;
-            case D2TriggerAction.PRIORITY: id = com.winlator.R.string.pad_action_priority; break;
             default: id = com.winlator.R.string.pad_action_nothing; break;
         }
         return D2Text.get(context, id);

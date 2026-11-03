@@ -1679,6 +1679,7 @@
     <string name="settings_saves_save_as">Enregistrer sous</string>
     <string name="pad_identify_hint">Appuyez sur %1$s pour identifier</string>
     <string name="pad_name_triangle">Triangle</string>
+    <string name="pad_name_cross">Croix</string>
     <string name="settings_section_tasten">Boutons de la manette</string>
     <string name="helper_padStyle_label">Style des boutons dans les aides</string>
     <string name="helper_padStyle_info">Les noms et symboles de boutons affichés dans les aides. Automatique les choisit d\'après la manette connectée.</string>
@@ -1691,14 +1692,14 @@
     <string name="helper_targetPriority_opt0">Le plus proche (un monstre collé à vous passe quand même en premier)</string>
     <string name="helper_targetPriority_opt1">Monstre d\'abord</string>
     <string name="helper_targetPriority_opt2">Objet d\'abord</string>
-    <string name="btn_priority_closest">A : Proche</string>
-    <string name="btn_priority_item">A : Objet</string>
-    <string name="btn_priority_monster">A : Mob</string>
+    <string name="btn_priority_closest">Cible : Proche</string>
+    <string name="btn_priority_item">Cible : Objet</string>
+    <string name="btn_priority_monster">Cible : Mob</string>
     <string name="helper_pin_priority">Priorité de A</string>
-    <string name="note_priority">A vise : %1$s</string>
+    <string name="note_priority">%1$s vise : %2$s</string>
     <string name="pad_action_belt">Ceinture, colonne %1$d (avec LT : au mercenaire)</string>
     <string name="pad_action_character">Personnage</string>
-    <string name="pad_action_priority">Changer A : monstre / objet / plus proche</string>
+    <string name="pad_action_priority">Priorité de %1$s : monstre / objet / plus proche</string>
     <string name="pad_action_quests">Quêtes</string>
     <string name="pad_action_skill_tree">Arbre de compétences</string>
     <string name="priority_closest">Le plus proche</string>

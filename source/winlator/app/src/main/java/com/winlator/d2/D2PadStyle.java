@@ -68,6 +68,12 @@ final class D2PadStyle {
     }
 
 
+    // The name of the bottom face button, the one that attacks or takes.
+    static String bottomName(Context context, int style) {
+        if (style == PLAYSTATION) return D2Text.get(context, com.winlator.R.string.pad_name_cross);
+        return label(style, D2PadNav.GLYPH_A);
+    }
+
     // The name of the top face button for text such as "Press Y to identify".
     static String topName(Context context, int style) {
         if (style == PLAYSTATION) return D2Text.get(context, com.winlator.R.string.pad_name_triangle);
