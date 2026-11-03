@@ -1686,5 +1686,10 @@
     <string name="helper_padStyle_opt1">Xbox</string>
     <string name="helper_padStyle_opt2">PlayStation</string>
     <string name="helper_padStyle_opt3">Nintendo</string>
+    <string name="helper_targetPriority_label">Quando un mostro e un oggetto sono a portata</string>
+    <string name="helper_targetPriority_info">Su cosa va prima il pulsante d\'azione del controller.</string>
+    <string name="helper_targetPriority_opt0">Il più vicino (un mostro attaccato a te viene comunque prima)</string>
+    <string name="helper_targetPriority_opt1">Prima il mostro</string>
+    <string name="helper_targetPriority_opt2">Prima l\'oggetto</string>
     <string name="pad_identify_none">Nessuna pergamena disponibile per l\'identificazione</string>
 </resources>

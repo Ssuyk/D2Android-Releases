@@ -258,6 +258,8 @@ public final class D2Gamepad {
 
     // share of the game height within which A takes or uses things; set from D2Settings.takeReach
     public static volatile float takeReachOfHeight = D2Settings.TAKE_REACH_DEFAULT / 100f;
+    // D2PadTarget.PRIORITY_*, set from D2Settings.targetPriority
+    public static volatile int targetPriority = D2PadTarget.PRIORITY_CLOSEST;
 
 
 

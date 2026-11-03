@@ -1686,5 +1686,10 @@
     <string name="helper_padStyle_opt1">Xbox</string>
     <string name="helper_padStyle_opt2">PlayStation</string>
     <string name="helper_padStyle_opt3">Nintendo</string>
+    <string name="helper_targetPriority_label">Quand un monstre et un objet sont à portée</string>
+    <string name="helper_targetPriority_info">Ce que vise d\'abord le bouton d\'action de la manette.</string>
+    <string name="helper_targetPriority_opt0">Le plus proche (un monstre collé à vous passe quand même en premier)</string>
+    <string name="helper_targetPriority_opt1">Monstre d\'abord</string>
+    <string name="helper_targetPriority_opt2">Objet d\'abord</string>
     <string name="pad_identify_none">Aucun parchemin disponible pour l\'identification</string>
 </resources>

@@ -8,6 +8,7 @@
 - Gamepad an der Truhe: Y verschiebt den Gegenstand unter dem Zeiger zwischen Inventar und Truhe, LB und RB blättern die PlugY-Truhenseiten um. Beim Händler wechseln LB und RB die Reiter.
 - Gamepad: Y identifiziert den Gegenstand unter dem Zeiger mit einem Identifizierungsbuch oder einer -rolle aus dem Inventar, und die Beschreibung des Gegenstands zeigt „Y drücken zum Identifizieren“, oder „Keine Rollen zum Identifizieren vorhanden“, wenn keine da sind. Die Ausdauerleiste bleibt am unteren Rand des Infofelds sichtbar, das die des Spiels verdeckt.
 - Die Tastenhinweise folgen dem verbundenen Controller: Xbox-Buchstaben, PlayStation-Symbole oder Nintendo-Buchstaben. Einstellungen › Anzeige › Controller-Tasten wählt einen Stil von Hand.
+- Gamepad: Eine neue Einstellung unter Zielhilfe legt fest, worauf die Aktionstaste geht, wenn ein Monster und ein Gegenstand in Reichweite sind: das Nächste (wie bisher), zuerst das Monster oder zuerst der Gegenstand.
 - Aktionsknopf: Die neue Einstellung „Reichweite für Gegenstände und Objekte“ legt fest, wie weit Gegenstände aufgehoben und Objekte benutzt werden. Ein Kreis zeigt die Reichweite, während der Regler sich bewegt.
 - Snapdragon 8 Gen 2 (Adreno 740, z. B. Galaxy S23): Das Bild flackert nicht mehr.
 - Spielstände: Beim Umzug der Spielstände in die App wird ein dort schon vorhandener Spielstand nicht mehr überschrieben. Weicht eine Datei ab, bleibt der alte Ordner erhalten.

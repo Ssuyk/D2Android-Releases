@@ -23,6 +23,9 @@ import java.util.List;
 final class D2PadTarget {
     static final int ATTACK = 0, TAKE = 1;
 
+    // What A goes for when a monster and something to take are both in reach.
+    static final int PRIORITY_CLOSEST = 0, PRIORITY_MONSTER = 1, PRIORITY_ITEM = 2;
+
     static final double KEEP = 1.15;
 
     static final double SPECIAL = 0.9;
@@ -77,7 +80,19 @@ final class D2PadTarget {
 
 
     static Choice choose(List<Candidate> monsters, List<Candidate> takes, boolean stick, double dirX, double dirY,
-                         double coneCos, double melee, double skillReach, double takeReach, long previous) {
+                         double coneCos, double melee, double skillReach, double takeReach, long previous, int priority) {
+        if (priority == PRIORITY_MONSTER || priority == PRIORITY_ITEM) {
+            List<Candidate> none = java.util.Collections.emptyList();
+            boolean monsterFirst = priority == PRIORITY_MONSTER;
+            Choice first = nearest(monsterFirst ? monsters : none, monsterFirst ? none : takes, stick, dirX, dirY, coneCos, melee,
+                skillReach, takeReach, previous);
+            if (first.target != null) return first;
+        }
+        return nearest(monsters, takes, stick, dirX, dirY, coneCos, melee, skillReach, takeReach, previous);
+    }
+
+    private static Choice nearest(List<Candidate> monsters, List<Candidate> takes, boolean stick, double dirX, double dirY,
+                                  double coneCos, double melee, double skillReach, double takeReach, long previous) {
 
         Candidate inner = null, innerPrevious = null;
         double innerScore = Double.MAX_VALUE, previousInner = Double.MAX_VALUE;

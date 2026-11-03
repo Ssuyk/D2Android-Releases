@@ -1680,5 +1680,10 @@
     <string name="helper_padStyle_opt1">Xbox</string>
     <string name="helper_padStyle_opt2">PlayStation</string>
     <string name="helper_padStyle_opt3">Nintendo</string>
+    <string name="helper_targetPriority_label">Wenn ein Monster und ein Gegenstand in Reichweite sind</string>
+    <string name="helper_targetPriority_info">Worauf die Aktionstaste des Gamepads zuerst geht.</string>
+    <string name="helper_targetPriority_opt0">Das Nächste (ein Monster direkt neben dir geht trotzdem vor)</string>
+    <string name="helper_targetPriority_opt1">Monster zuerst</string>
+    <string name="helper_targetPriority_opt2">Gegenstand zuerst</string>
     <string name="pad_identify_none">Keine Rollen zum Identifizieren vorhanden</string>
 </resources>

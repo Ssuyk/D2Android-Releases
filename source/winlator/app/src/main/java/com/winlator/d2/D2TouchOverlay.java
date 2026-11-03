@@ -696,6 +696,7 @@ public class D2TouchOverlay extends View {
         aimConeDeg = D2Settings.aimCone(context);
         aimBlindDeg = D2Settings.aimBlind(context);
         D2Gamepad.takeReachOfHeight = D2Settings.takeReach(context) / 100f;
+        D2Gamepad.targetPriority = D2Settings.targetPriority(context);
         highlightOn = D2Settings.highlight(context);
         potionMode = D2Settings.potions(context);
         staminaMode = D2Settings.staminaMode(context);
@@ -7570,7 +7571,7 @@ public class D2TouchOverlay extends View {
         float h = s.gameHeight;
         return D2PadTarget.choose(monsters, takes, joystickActive && hasDirection, dirX, dirY, Math.cos(Math.toRadians(aim.coneDeg)),
             h * aim.reachPct(true) / 100f, h * aim.reachPct(meleeReach(pressSkill(true))) / 100f,
-            h * D2Gamepad.takeReachOfHeight, previous);
+            h * D2Gamepad.takeReachOfHeight, previous, D2Gamepad.targetPriority);
     }
 
 

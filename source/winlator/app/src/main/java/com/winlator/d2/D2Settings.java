@@ -311,7 +311,7 @@ public final class D2Settings {
 
 
     static final String KEY_AIM_ASSIST = "aimAssist", KEY_AIM_RANGE = "aimRange", KEY_AIM_RANGE_MELEE = "aimRangeMelee", KEY_AIM_CONE = "aimCone",
-        KEY_AIM_BLIND = "aimBlind", KEY_TAKE_REACH = "takeReach",
+        KEY_AIM_BLIND = "aimBlind", KEY_TAKE_REACH = "takeReach", KEY_TARGET_PRIORITY = "targetPriority",
         KEY_HIGHLIGHT = "highlight", KEY_POTIONS = "potions", KEY_ITEMS_NEED_LABELS = "itemsNeedLabels", KEY_RING_SORT = "ringSort",
         KEY_DIRECT_WALK = "directWalk", KEY_TAP_MOVES = "tapMoves", KEY_HUD = "hud", KEY_MENU_OPEN = "menuOpen", KEY_AUTO_PAUSE = "autoPause",
         KEY_LABELS = "itemLabels", KEY_ALWAYS_RUN = "alwaysRun", KEY_ORB_NUMBERS = "orbNumbers",
@@ -386,6 +386,11 @@ public final class D2Settings {
 
     public static int takeReach(Context context) {
         return clamp(prefs(context).getInt(KEY_TAKE_REACH, TAKE_REACH_DEFAULT), TAKE_REACH_MIN, TAKE_REACH_MAX);
+    }
+
+    public static int targetPriority(Context context) {
+        int v = prefs(context).getInt(KEY_TARGET_PRIORITY, D2PadTarget.PRIORITY_CLOSEST);
+        return v == D2PadTarget.PRIORITY_MONSTER || v == D2PadTarget.PRIORITY_ITEM ? v : D2PadTarget.PRIORITY_CLOSEST;
     }
 
 

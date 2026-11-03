@@ -1686,5 +1686,10 @@
     <string name="helper_padStyle_opt1">Xbox</string>
     <string name="helper_padStyle_opt2">PlayStation</string>
     <string name="helper_padStyle_opt3">Nintendo</string>
+    <string name="helper_targetPriority_label">Cuando un monstruo y un objeto están al alcance</string>
+    <string name="helper_targetPriority_info">A qué va primero el botón de acción del mando.</string>
+    <string name="helper_targetPriority_opt0">El más cercano (un monstruo pegado a ti sigue yendo primero)</string>
+    <string name="helper_targetPriority_opt1">Monstruo primero</string>
+    <string name="helper_targetPriority_opt2">Objeto primero</string>
     <string name="pad_identify_none">No hay pergaminos disponibles para identificar</string>
 </resources>

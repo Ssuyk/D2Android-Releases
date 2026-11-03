@@ -8,6 +8,7 @@
 - Mando en el cofre: Y mueve el objeto bajo el puntero entre el inventario y el cofre, LB y RB pasan las páginas del cofre de PlugY. En el mercader, LB y RB cambian de pestaña.
 - Mando: Y identifica el objeto bajo el puntero con un tomo o pergamino de identificación del inventario, y la descripción del objeto indica «Pulsa Y para identificar», o «No hay pergaminos disponibles para identificar» si no hay ninguno. La barra de resistencia sigue visible en el borde inferior de la cuadrícula de información, que tapa la del juego.
 - Las ayudas de botones siguen al mando conectado: letras de Xbox, símbolos de PlayStation o letras de Nintendo. Ajustes › Pantalla › Botones del mando permite elegir un estilo a mano.
+- Mando: un nuevo ajuste en la ayuda de puntería elige a qué va el botón de acción cuando un monstruo y un objeto están al alcance: el más cercano (como antes), primero el monstruo o primero el objeto.
 - Botón de acción: el nuevo ajuste «Alcance para objetos y elementos» fija a qué distancia se recogen los objetos y se usan los elementos. Un círculo muestra el alcance mientras se mueve el control deslizante.
 - Snapdragon 8 Gen 2 (Adreno 740, p. ej. Galaxy S23): la imagen ya no parpadea.
 - Partidas guardadas: al mover las partidas a la aplicación, una partida que ya estaba allí ya no se sobrescribe. Si un archivo es distinto, se conserva la carpeta antigua.

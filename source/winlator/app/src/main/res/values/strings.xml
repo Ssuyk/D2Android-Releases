@@ -1684,5 +1684,10 @@
     <string name="helper_padStyle_opt1">Xbox</string>
     <string name="helper_padStyle_opt2">PlayStation</string>
     <string name="helper_padStyle_opt3">Nintendo</string>
+    <string name="helper_targetPriority_label">When a monster and an item are both in reach</string>
+    <string name="helper_targetPriority_info">What the gamepad action button goes for first.</string>
+    <string name="helper_targetPriority_opt0">Closest (a monster right next to you still comes first)</string>
+    <string name="helper_targetPriority_opt1">Monster first</string>
+    <string name="helper_targetPriority_opt2">Item first</string>
     <string name="pad_identify_none">No scrolls available for identification</string>
 </resources>
