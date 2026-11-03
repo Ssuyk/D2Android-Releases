@@ -76,7 +76,7 @@ public class D2TouchOverlay extends View {
         KIND_ESCAPE = 6, KIND_LABELS = 7, KIND_CONTROLS = 8, KIND_MENU = 9, KIND_PLAIN_KEY = 10,
         KIND_EDIT_DONE = 11, KIND_EDIT_RESET = 12, KIND_EDIT_BIGGER = 13, KIND_EDIT_SMALLER = 14, KIND_EDIT_DEBUG = 15,
         KIND_INTERACT = 16, KIND_MENU_TOGGLE = 17, KIND_PAUSE = 18, KIND_PORTAL = 19, KIND_RESPEC = 21, KIND_SHOP_POTIONS = 22, KIND_SORT = 23,
-        KIND_RECIPES = 24;
+        KIND_RECIPES = 24, KIND_PRIORITY = 25;
 
     private static final int ICON_TEXT = -1, ICON_RUN = 100, ICON_ARROW = 101, ICON_LINES = 102, ICON_PAUSE = 103, ICON_PORTAL = 104,
         ICON_CUBE = 105;
@@ -988,26 +988,26 @@ public class D2TouchOverlay extends View {
         D2Hud graphics = hud;
 
         String[] ids = graphics != null
-            ? new String[]{"toggle", "pause", "portal", "esc", "map", D2RezeptOeffnen.MENU_ID, "inv", "char", "skills", D2MenuRow.QUESTS, "run", "names", "keys", "drawer"}
-            : new String[]{"drawer", "pause", "portal", "esc", "map", D2RezeptOeffnen.MENU_ID, "inv", "char", "skills", "run", "names", "keys"};
+            ? new String[]{"toggle", "pause", "portal", "esc", "map", D2RezeptOeffnen.MENU_ID, "inv", "char", "skills", D2MenuRow.QUESTS, "run", "names", "prio", "keys", "drawer"}
+            : new String[]{"drawer", "pause", "portal", "esc", "map", D2RezeptOeffnen.MENU_ID, "inv", "char", "skills", "run", "names", "prio", "keys"};
         String pause = text(R.string.btn_pause), portal = text(R.string.btn_portal), map = text(R.string.btn_map), inv = text(R.string.btn_inv),
             chr = text(R.string.btn_char), skills = text(R.string.btn_skills), quests = text(R.string.btn_quests), names = text(R.string.btn_names),
-            run = text(R.string.btn_run), keysLabel = text(R.string.btn_keys), recipesLabel = text(R.string.menu_label_recipes);
+            run = text(R.string.btn_run), keysLabel = text(R.string.btn_keys), recipesLabel = text(R.string.menu_label_recipes), prio = priorityLabel(D2Gamepad.targetPriority);
         String[] labels = graphics != null
-            ? new String[]{"", pause, portal, "Esc", map, recipesLabel, inv, chr, skills, quests, run, names, keysLabel, "≡"}
-            : new String[]{"≡", pause, portal, "Esc", map, recipesLabel, inv, chr, skills, run, names, keysLabel};
+            ? new String[]{"", pause, portal, "Esc", map, recipesLabel, inv, chr, skills, quests, run, names, prio, keysLabel, "≡"}
+            : new String[]{"≡", pause, portal, "Esc", map, recipesLabel, inv, chr, skills, run, names, prio, keysLabel};
         int[] kinds = graphics != null
-            ? new int[]{KIND_MENU_TOGGLE, KIND_PAUSE, KIND_PORTAL, KIND_ESCAPE, KIND_KEY, KIND_RECIPES, KIND_PANEL, KIND_PANEL, KIND_PANEL, KIND_PANEL, KIND_KEY, KIND_LABELS, KIND_CONTROLS, KIND_MENU}
-            : new int[]{KIND_MENU, KIND_PAUSE, KIND_PORTAL, KIND_ESCAPE, KIND_KEY, KIND_RECIPES, KIND_PANEL, KIND_PANEL, KIND_PANEL, KIND_KEY, KIND_LABELS, KIND_CONTROLS};
+            ? new int[]{KIND_MENU_TOGGLE, KIND_PAUSE, KIND_PORTAL, KIND_ESCAPE, KIND_KEY, KIND_RECIPES, KIND_PANEL, KIND_PANEL, KIND_PANEL, KIND_PANEL, KIND_KEY, KIND_LABELS, KIND_PRIORITY, KIND_CONTROLS, KIND_MENU}
+            : new int[]{KIND_MENU, KIND_PAUSE, KIND_PORTAL, KIND_ESCAPE, KIND_KEY, KIND_RECIPES, KIND_PANEL, KIND_PANEL, KIND_PANEL, KIND_KEY, KIND_LABELS, KIND_PRIORITY, KIND_CONTROLS};
         int[] keys = graphics != null
-            ? new int[]{0, 0, 0, VK_ESCAPE, VK_TAB, 0, VK_I, VK_C, VK_T, VK_Q, VK_R, 0, 0, 0}
-            : new int[]{0, 0, 0, VK_ESCAPE, VK_TAB, 0, VK_I, VK_C, VK_T, VK_R, 0, 0};
+            ? new int[]{0, 0, 0, VK_ESCAPE, VK_TAB, 0, VK_I, VK_C, VK_T, VK_Q, VK_R, 0, 0, 0, 0}
+            : new int[]{0, 0, 0, VK_ESCAPE, VK_TAB, 0, VK_I, VK_C, VK_T, VK_R, 0, 0, 0};
         int[] icons = {ICON_ARROW, ICON_PAUSE, ICON_PORTAL, D2Hud.ICON_MENU, D2Hud.ICON_MAP, ICON_CUBE, D2Hud.ICON_INV, D2Hud.ICON_CHAR, D2Hud.ICON_SKILLS, D2Hud.ICON_QUESTS,
-            ICON_RUN, ICON_TEXT, ICON_TEXT, ICON_LINES};
+            ICON_RUN, ICON_TEXT, ICON_TEXT, ICON_TEXT, ICON_LINES};
 
         String[] captions = {null, text(R.string.menu_label_pause), text(R.string.menu_label_portal), text(R.string.menu_label_menu),
             text(R.string.menu_label_map), recipesLabel, text(R.string.menu_label_inv), text(R.string.menu_label_char), text(R.string.menu_label_skills),
-            text(R.string.menu_label_quests), text(R.string.menu_label_run), null, null, null};
+            text(R.string.menu_label_quests), text(R.string.menu_label_run), null, null, null, null};
 
 
         float rowGap = graphics != null ? menuRowGap(2 * half) : gap;
@@ -4307,6 +4307,9 @@ public class D2TouchOverlay extends View {
             case KIND_LABELS:
                 labelsWanted = !labelsWanted;
                 syncLabels();
+                break;
+            case KIND_PRIORITY:
+                cyclePriority();
                 break;
             case KIND_CONTROLS:
 
@@ -8878,6 +8881,16 @@ public class D2TouchOverlay extends View {
             cycleInteract(row == 3 ? -1 : 1);
             return;
         }
+    }
+
+
+    boolean padDpadNavigates(int row) {
+        if (pauseWanted || editMode) return false;
+        return padRingOpen() || padEscMenuOpen() || padInventorySnaps() || npcMenuOpen() && (row == 2 || row == 3);
+    }
+
+
+    private void padBeltDrink(int row, boolean mercenary) {
         D2Trace.log("pad: belt " + (row + 1) + (mercenary ? " to the mercenary" : ""));
         boolean shifted = shiftDown;
         if (mercenary && !shifted) setShift(true);
@@ -8976,9 +8989,45 @@ public class D2TouchOverlay extends View {
             case D2TriggerAction.RUN_TOGGLE:
                 pressKey(VK_R);
                 break;
+            case D2TriggerAction.QUESTS:
+                padPanelKey(VK_Q);
+                break;
+            case D2TriggerAction.CHARACTER:
+                padPanelKey(VK_C);
+                break;
+            case D2TriggerAction.SKILL_TREE:
+                padPanelKey(VK_T);
+                break;
+            case D2TriggerAction.PRIORITY:
+                cyclePriority();
+                break;
             default:
+                if (D2TriggerAction.isBelt(act) && !pauseWanted && !editMode) padBeltDrink(act - D2TriggerAction.BELT_1, padLayer2);
                 break;
         }
+    }
+
+
+    // Closest, monster first, item first, and round again; the setting keeps the choice for the next game.
+    private void cyclePriority() {
+        int next = (D2Gamepad.targetPriority + 1) % 3;
+        D2Gamepad.targetPriority = next;
+        D2Settings.putInt(getContext(), "targetPriority", next);
+        Button b = gameButton("menu_prio");
+        if (b != null) b.label = priorityLabel(next);
+        showNote(text(R.string.note_priority, priorityName(next)));
+        D2Trace.log("pad: A priority " + next);
+        invalidate();
+    }
+
+    private String priorityName(int p) {
+        return text(p == D2PadTarget.PRIORITY_MONSTER ? R.string.helper_targetPriority_opt1
+            : p == D2PadTarget.PRIORITY_ITEM ? R.string.helper_targetPriority_opt2 : R.string.priority_closest);
+    }
+
+    private String priorityLabel(int p) {
+        return text(p == D2PadTarget.PRIORITY_MONSTER ? R.string.btn_priority_monster
+            : p == D2PadTarget.PRIORITY_ITEM ? R.string.btn_priority_item : R.string.btn_priority_closest);
     }
 
 
@@ -8998,8 +9047,13 @@ public class D2TouchOverlay extends View {
             case D2TriggerAction.APP_MENU: return text(R.string.pad_action_menu);
             case D2TriggerAction.WEAPON_SWAP: return text(R.string.pad_action_weapons);
             case D2TriggerAction.RUN_TOGGLE: return text(R.string.pad_action_run);
+            case D2TriggerAction.QUESTS: return text(R.string.pad_action_quests);
+            case D2TriggerAction.CHARACTER: return text(R.string.pad_action_character);
+            case D2TriggerAction.SKILL_TREE: return text(R.string.pad_action_skill_tree);
+            case D2TriggerAction.PRIORITY: return text(R.string.pad_action_priority);
             case D2TriggerAction.NOTHING: return text(R.string.pad_action_nothing);
             default:
+                if (D2TriggerAction.isBelt(act)) return text(R.string.pad_action_belt, act - D2TriggerAction.BELT_1 + 1);
                 if (D2TriggerAction.isSkillKey(act)) return text(R.string.pad_action_skill_key, D2TriggerAction.skillKeyIndex(act) + 1);
                 return text(R.string.trigger_action_skill);
         }

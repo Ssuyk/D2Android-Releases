@@ -64,7 +64,7 @@ public final class D2Gamepad {
 
 
 
-    public static final int[] ASSIGNABLE = {A, X, B, Y, RB, RT, LB, L3, R3, VIEW};
+    public static final int[] ASSIGNABLE = {A, X, B, Y, RB, RT, LB, L3, R3, VIEW, DPAD_DOWN, DPAD_UP, DPAD_LEFT, DPAD_RIGHT};
 
 
     public static int defaultAction(int button, boolean layer2) {
@@ -79,6 +79,10 @@ public final class D2Gamepad {
             case L3: return D2TriggerAction.RUN_TOGGLE;
             case R3: return D2TriggerAction.WEAPON_SWAP;
             case VIEW: return D2TriggerAction.INVENTORY;
+            case DPAD_DOWN: return layer2 ? D2TriggerAction.BELT_1 + 2 : D2TriggerAction.MAP;
+            case DPAD_UP: return layer2 ? D2TriggerAction.BELT_4 : D2TriggerAction.QUESTS;
+            case DPAD_LEFT: return layer2 ? D2TriggerAction.BELT_1 : D2TriggerAction.CHARACTER;
+            case DPAD_RIGHT: return layer2 ? D2TriggerAction.BELT_1 + 1 : D2TriggerAction.SKILL_TREE;
             default: return D2TriggerAction.NOTHING;
         }
     }

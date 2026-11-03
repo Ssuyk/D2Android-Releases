@@ -565,7 +565,7 @@
     <string name="helper_padMap_info">Tap a box to give a button a job. You put a skill on F1–F8 in edit mode: press the pad button, point at the skill with the stick, press A. Holding \"Take\" opens the ring of targets: the stick chooses, A takes, the cross left/right turns the page.</string>
     <string name="helper_pad_layer1">Button</string>
     <string name="helper_pad_layer2">With LT held</string>
-    <string name="helper_pad_fixed">Always the same: left stick walks, holding LT gives the second row, the cross drinks from the belt, Start opens the game menu (hold: app menu), View as assigned below, the inventory by default (hold: a wheel of the game\'s windows, a stick chooses, let go opens). In windows the stick moves the pointer, A clicks, X clicks right (in a shop: buy, on your own items sell), B closes windows, wheels and talks (without a window B stays as assigned); holding R3 in the inventory sorts it.</string>
+    <string name="helper_pad_fixed">Always the same: left stick walks, holding LT gives the second row, the cross as assigned below (in windows and menus it moves between cells and entries), Start opens the game menu (hold: app menu), View as assigned below, the inventory by default (hold: a wheel of the game\'s windows, a stick chooses, let go opens). In windows the stick moves the pointer, A clicks, X clicks right (in a shop: buy, on your own items sell), B closes windows, wheels and talks (without a window B stays as assigned); holding R3 in the inventory sorts it.</string>
     <string name="helper_pad_none">No gamepad seen yet</string>
     <string name="helper_pad_seen">Seen: %1$s, last button %2$s</string>
     <string name="helper_padDeadzone_label">How far the stick has to move</string>
@@ -1689,5 +1689,16 @@
     <string name="helper_targetPriority_opt0">Closest (a monster right next to you still comes first)</string>
     <string name="helper_targetPriority_opt1">Monster first</string>
     <string name="helper_targetPriority_opt2">Item first</string>
+    <string name="btn_priority_closest">A: Near</string>
+    <string name="btn_priority_item">A: Item</string>
+    <string name="btn_priority_monster">A: Mob</string>
+    <string name="helper_pin_priority">A priority</string>
+    <string name="note_priority">A goes for: %1$s</string>
+    <string name="pad_action_belt">Belt column %1$d (with LT: to the mercenary)</string>
+    <string name="pad_action_character">Character</string>
+    <string name="pad_action_priority">Switch A: monster / item / closest</string>
+    <string name="pad_action_quests">Quests</string>
+    <string name="pad_action_skill_tree">Skill tree</string>
+    <string name="priority_closest">Closest</string>
     <string name="pad_identify_none">No scrolls available for identification</string>
 </resources>

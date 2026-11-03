@@ -566,7 +566,7 @@
     <string name="helper_padMap_info">Touche une case pour donner une tâche à un bouton. Tu mets une aptitude sur F1-F8 en mode édition : appuie sur le bouton de la manette, vise l\'aptitude avec le stick, appuie sur A. Maintenir \"Prendre\" ouvre l\'anneau des cibles : le stick choisit, A prend, la croix gauche/droite tourne la page.</string>
     <string name="helper_pad_layer1">Bouton</string>
     <string name="helper_pad_layer2">LT maintenu</string>
-    <string name="helper_pad_fixed">Toujours pareil : le stick gauche fait marcher, maintenir LT donne la deuxième rangée, la croix boit dans la ceinture, Start ouvre le menu du jeu (maintenir : menu de l\'app), View comme assigné plus bas, par défaut l\'inventaire (maintenir : une roue des fenêtres du jeu, un stick choisit, relâcher ouvre). Dans les fenêtres, le stick bouge le pointeur, A clique, X fait un clic droit (dans une boutique : acheter, sur tes objets : vendre), B ferme fenêtres, roues et dialogues (sans fenêtre, B fait ce qui est assigné) ; maintenir R3 dans l\'inventaire le trie.</string>
+    <string name="helper_pad_fixed">Toujours pareil : le stick gauche fait marcher, maintenir LT donne la deuxième rangée, la croix comme assigné plus bas (dans les fenêtres et menus, elle passe de case en case), Start ouvre le menu du jeu (maintenir : menu de l\'app), View comme assigné plus bas, par défaut l\'inventaire (maintenir : une roue des fenêtres du jeu, un stick choisit, relâcher ouvre). Dans les fenêtres, le stick bouge le pointeur, A clique, X fait un clic droit (dans une boutique : acheter, sur tes objets : vendre), B ferme fenêtres, roues et dialogues (sans fenêtre, B fait ce qui est assigné) ; maintenir R3 dans l\'inventaire le trie.</string>
     <string name="helper_pad_none">Aucune manette détectée</string>
     <string name="helper_pad_seen">Détectée : %1$s, dernier bouton %2$s</string>
     <string name="helper_padDeadzone_label">Course du stick avant réaction</string>
@@ -1691,5 +1691,16 @@
     <string name="helper_targetPriority_opt0">Le plus proche (un monstre collé à vous passe quand même en premier)</string>
     <string name="helper_targetPriority_opt1">Monstre d\'abord</string>
     <string name="helper_targetPriority_opt2">Objet d\'abord</string>
+    <string name="btn_priority_closest">A : Proche</string>
+    <string name="btn_priority_item">A : Objet</string>
+    <string name="btn_priority_monster">A : Mob</string>
+    <string name="helper_pin_priority">Priorité de A</string>
+    <string name="note_priority">A vise : %1$s</string>
+    <string name="pad_action_belt">Ceinture, colonne %1$d (avec LT : au mercenaire)</string>
+    <string name="pad_action_character">Personnage</string>
+    <string name="pad_action_priority">Changer A : monstre / objet / plus proche</string>
+    <string name="pad_action_quests">Quêtes</string>
+    <string name="pad_action_skill_tree">Arbre de compétences</string>
+    <string name="priority_closest">Le plus proche</string>
     <string name="pad_identify_none">Aucun parchemin disponible pour l\'identification</string>
 </resources>

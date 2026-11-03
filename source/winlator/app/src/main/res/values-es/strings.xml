@@ -566,7 +566,7 @@
     <string name="helper_padMap_info">Toca una casilla para dar una función a un botón. Una habilidad se pone en F1-F8 en el modo de edición: pulsa el botón del mando, señala la habilidad con el stick y pulsa A. Mantener \"Coger\" abre el anillo de objetivos: el stick elige, A coge y la cruceta izquierda/derecha pasa de página.</string>
     <string name="helper_pad_layer1">Botón</string>
     <string name="helper_pad_layer2">Con LT pulsado</string>
-    <string name="helper_pad_fixed">Siempre igual: el stick izquierdo anda, mantener LT da la segunda fila, la cruceta bebe del cinturón, Start abre el menú del juego (mantener: menú de la app), View según lo asignado abajo, por defecto el inventario (mantener: una rueda con las ventanas del juego, un stick elige, al soltar se abre). En las ventanas el stick mueve el puntero, A hace clic, X clic derecho (en una tienda: comprar, en tus objetos: vender), B cierra ventanas, ruedas y conversaciones (sin ventana, B hace lo asignado); mantener R3 en el inventario lo ordena.</string>
+    <string name="helper_pad_fixed">Siempre igual: el stick izquierdo anda, mantener LT da la segunda fila, la cruceta según lo asignado abajo (en ventanas y menús pasa de casilla en casilla), Start abre el menú del juego (mantener: menú de la app), View según lo asignado abajo, por defecto el inventario (mantener: una rueda con las ventanas del juego, un stick elige, al soltar se abre). En las ventanas el stick mueve el puntero, A hace clic, X clic derecho (en una tienda: comprar, en tus objetos: vender), B cierra ventanas, ruedas y conversaciones (sin ventana, B hace lo asignado); mantener R3 en el inventario lo ordena.</string>
     <string name="helper_pad_none">Aún no se ha detectado ningún mando</string>
     <string name="helper_pad_seen">Detectado: %1$s, último botón %2$s</string>
     <string name="helper_padDeadzone_label">Cuánto hay que mover el stick</string>
@@ -1691,5 +1691,16 @@
     <string name="helper_targetPriority_opt0">El más cercano (un monstruo pegado a ti sigue yendo primero)</string>
     <string name="helper_targetPriority_opt1">Monstruo primero</string>
     <string name="helper_targetPriority_opt2">Objeto primero</string>
+    <string name="btn_priority_closest">A: Cerca</string>
+    <string name="btn_priority_item">A: Objeto</string>
+    <string name="btn_priority_monster">A: Mob</string>
+    <string name="helper_pin_priority">Prioridad de A</string>
+    <string name="note_priority">A va a: %1$s</string>
+    <string name="pad_action_belt">Cinturón, columna %1$d (con LT: al mercenario)</string>
+    <string name="pad_action_character">Personaje</string>
+    <string name="pad_action_priority">Cambiar A: monstruo / objeto / más cercano</string>
+    <string name="pad_action_quests">Misiones</string>
+    <string name="pad_action_skill_tree">Árbol de habilidades</string>
+    <string name="priority_closest">El más cercano</string>
     <string name="pad_identify_none">No hay pergaminos disponibles para identificar</string>
 </resources>

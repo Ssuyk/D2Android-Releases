@@ -127,7 +127,8 @@ final class D2GamepadInput {
                 continue;
             }
 
-            boolean holds = !swallowed[b] && b != D2Gamepad.LT && D2Gamepad.beltRow(b) < 0 && !D2Gamepad.hasLongPress(b);
+            boolean holds = !swallowed[b] && b != D2Gamepad.LT && !navigating[b] && !D2Gamepad.hasLongPress(b);
+            navigating[b] = false;
             swallowed[b] = false;
             if (holds) overlay.padButton(b, overlay.padAction(b, pressedInLayer2[b]), false);
         }
@@ -189,8 +190,10 @@ final class D2GamepadInput {
             return;
         }
         int row = D2Gamepad.beltRow(button);
-        if (row >= 0) {
-            handler.removeCallbacks(beltRepeat);
+        if (row >= 0) handler.removeCallbacks(beltRepeat);
+        // the D-pad moves through whatever has cells or entries; otherwise it is an assignable button
+        if (row >= 0 && (pressed ? overlay.padDpadNavigates(row) : navigating[button])) {
+            navigating[button] = pressed;
             if (pressed) {
                 overlay.padBelt(row, down[D2Gamepad.LT]);
                 repeatButton = button;
@@ -211,6 +214,8 @@ final class D2GamepadInput {
         overlay.padButton(button, overlay.padAction(button, pressedInLayer2[button]), pressed);
     }
 
+
+    private final boolean[] navigating = new boolean[D2Gamepad.COUNT];
 
     private static final int REPEAT_FIRST_MS = 350, REPEAT_NEXT_MS = 120;
     private int repeatButton = -1, repeatRow;

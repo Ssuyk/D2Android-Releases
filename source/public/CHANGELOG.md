@@ -10,6 +10,7 @@
 - Gamepad: Y identifies the item under the pointer with an identify tome or scroll from the inventory, and the item's description says "Press Y to identify", or "No scrolls available for identification" when there is none. The stamina bar stays visible along the bottom of the info grid, which covers the game's own.
 - Gamepad button hints follow the connected controller: Xbox letters, PlayStation symbols or Nintendo letters. Settings › Display › Controller buttons picks a style by hand.
 - Gamepad: a new setting under Aim assist picks what the action button goes for when a monster and an item are both in reach: the closest one (as before), the monster first, or the item first.
+- Gamepad: the D-pad no longer drinks potions. Each direction is assigned like the other buttons, by default down the map, up the quests, left the character and right the skill tree (with LT: the belt columns, to the mercenary). In the inventory, stash, shop, cube and menus it still moves between cells. A new action and menu button switches what A goes for: monster, item or closest.
 - Action button: new setting "Reach for items and objects" sets how far items and objects can be taken. A circle shows the reach while the slider moves.
 - Snapdragon 8 Gen 2 (Adreno 740, e.g. Galaxy S23): the picture no longer flickers.
 - Saved games: when the saves are moved into the app, a save already there is no longer overwritten. If a file differs, the old folder is kept.

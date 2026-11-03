@@ -566,7 +566,7 @@
     <string name="helper_padMap_info">Tocca un riquadro per dare un compito a un tasto. Un\'abilità su F1-F8 la imposti in modalità modifica: premi il tasto del pad, punta l\'abilità con lo stick, premi A. Tenendo premuto \"Prendi\" si apre il cerchio dei bersagli: lo stick sceglie, A prende, la croce sinistra/destra sfoglia.</string>
     <string name="helper_pad_layer1">Tasto</string>
     <string name="helper_pad_layer2">Con LT premuto</string>
-    <string name="helper_pad_fixed">Sempre uguale: lo stick sinistro cammina, tenere LT dà la seconda fila, la croce beve dalla cintura, Start apre il menu di gioco (tieni: menu dell\'app), View come assegnato sotto, di base l\'inventario (tieni: una ruota con le finestre del gioco, uno stick sceglie, lasciare apre). Nelle finestre lo stick muove il puntatore, A clicca, X clicca col destro (in un negozio: compra, sui tuoi oggetti vendi), B chiude finestre, ruote e dialoghi (senza finestra B fa ciò che è assegnato); tenere R3 nell\'inventario lo riordina.</string>
+    <string name="helper_pad_fixed">Sempre uguale: lo stick sinistro cammina, tenere LT dà la seconda fila, la croce come assegnato sotto (in finestre e menu passa da casella a casella), Start apre il menu di gioco (tieni: menu dell\'app), View come assegnato sotto, di base l\'inventario (tieni: una ruota con le finestre del gioco, uno stick sceglie, lasciare apre). Nelle finestre lo stick muove il puntatore, A clicca, X clicca col destro (in un negozio: compra, sui tuoi oggetti vendi), B chiude finestre, ruote e dialoghi (senza finestra B fa ciò che è assegnato); tenere R3 nell\'inventario lo riordina.</string>
     <string name="helper_pad_none">Nessun gamepad rilevato finora</string>
     <string name="helper_pad_seen">Rilevato: %1$s, ultimo tasto %2$s</string>
     <string name="helper_padDeadzone_label">Quanto deve muoversi lo stick</string>
@@ -1691,5 +1691,16 @@
     <string name="helper_targetPriority_opt0">Il più vicino (un mostro attaccato a te viene comunque prima)</string>
     <string name="helper_targetPriority_opt1">Prima il mostro</string>
     <string name="helper_targetPriority_opt2">Prima l\'oggetto</string>
+    <string name="btn_priority_closest">A: Vicino</string>
+    <string name="btn_priority_item">A: Oggetto</string>
+    <string name="btn_priority_monster">A: Mob</string>
+    <string name="helper_pin_priority">Priorità di A</string>
+    <string name="note_priority">A va su: %1$s</string>
+    <string name="pad_action_belt">Cintura, colonna %1$d (con LT: al mercenario)</string>
+    <string name="pad_action_character">Personaggio</string>
+    <string name="pad_action_priority">Cambia A: mostro / oggetto / più vicino</string>
+    <string name="pad_action_quests">Missioni</string>
+    <string name="pad_action_skill_tree">Albero delle abilità</string>
+    <string name="priority_closest">Il più vicino</string>
     <string name="pad_identify_none">Nessuna pergamena disponibile per l\'identificazione</string>
 </resources>

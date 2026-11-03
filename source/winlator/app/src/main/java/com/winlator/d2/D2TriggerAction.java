@@ -21,7 +21,12 @@ public final class D2TriggerAction {
 
         ESC_MENU = 18, APP_MENU = 19, WEAPON_SWAP = 20, RUN_TOGGLE = 21,
 
-        ATTACK_OR_TAKE = 22;
+        ATTACK_OR_TAKE = 22,
+
+        QUESTS = 23, CHARACTER = 24, SKILL_TREE = 25, PRIORITY = 26,
+
+        // belt columns 1 to 4; held with LT they go to the mercenary
+        BELT_1 = 27, BELT_4 = 30;
 
 
     public static final int KEY = -1, NOTHING = -2;
@@ -29,7 +34,13 @@ public final class D2TriggerAction {
     public static final int[] ALL = {SKILL, ATTACK, ATTACK_OR_TAKE, HEAL, MANA, REJUV, TAKE, PORTAL, MAP, INVENTORY, NAMES};
 
     public static final int[] PAD = {ATTACK_OR_TAKE, ATTACK, SKILL_F1, 11, 12, 13, 14, 15, 16, SKILL_F8, HEAL, MANA, REJUV,
-        TAKE, PORTAL, MAP, INVENTORY, NAMES, WEAPON_SWAP, RUN_TOGGLE, ESC_MENU, APP_MENU, NOTHING};
+        TAKE, PORTAL, MAP, INVENTORY, CHARACTER, SKILL_TREE, QUESTS, PRIORITY, BELT_1, 28, 29, BELT_4, NAMES, WEAPON_SWAP, RUN_TOGGLE,
+        ESC_MENU, APP_MENU, NOTHING};
+
+
+    public static boolean isBelt(int action) {
+        return action >= BELT_1 && action <= BELT_4;
+    }
 
 
     public static int of(int stored) {

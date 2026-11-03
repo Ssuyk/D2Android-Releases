@@ -219,7 +219,7 @@ public final class D2HelperEntries {
             l.add(new Entry(Kind.CHECK, key, "helper_" + key + "_label", s, TAB_DISPLAY, false, null, null));
 
         s = "Menü oben rechts";
-        l.add(new Entry(Kind.PINS, "menuPinned", "helper_menuPinned_label", s, TAB_CONTROL, false, "helper_menuPinned_lead", null, "pause", "helper_pin_pause", "portal", "helper_pin_portal", "inv", "helper_pin_inv", D2RezeptOeffnen.MENU_ID, "helper_pin_recipes", "char", "helper_pin_char", "skills", "helper_pin_skills", "map", "helper_pin_map", D2MenuRow.QUESTS, "helper_pin_quests", "esc", "helper_pin_esc", "names", "helper_pin_names", "run", "helper_pin_run", "keys", "helper_pin_keys", "drawer", "helper_pin_drawer"));
+        l.add(new Entry(Kind.PINS, "menuPinned", "helper_menuPinned_label", s, TAB_CONTROL, false, "helper_menuPinned_lead", null, "pause", "helper_pin_pause", "portal", "helper_pin_portal", "inv", "helper_pin_inv", D2RezeptOeffnen.MENU_ID, "helper_pin_recipes", "char", "helper_pin_char", "skills", "helper_pin_skills", "map", "helper_pin_map", D2MenuRow.QUESTS, "helper_pin_quests", "esc", "helper_pin_esc", "names", "helper_pin_names", "prio", "helper_pin_priority", "run", "helper_pin_run", "keys", "helper_pin_keys", "drawer", "helper_pin_drawer"));
 
 
         s = "Schultertasten";
